@@ -55,16 +55,27 @@ for(j in 1:length(fl)){
 
 # 1 = same 0 = different -- ony get points for answers that are the same as the master
 
-## remove master vector from list 
 
+# check where in the list the master file is 
+master <- ans[[5]]
 
-### create df of scores 
+# players 
 
+players <- sub(".*_", "", licsv)
+players <- sub(".csv", "", players)
+
+### check answers 
+scorelist <- list()
 for (i in 1: length(ans)){
   
+  p <- as.numeric(ans[[i]]%in%ans[[5]])
+  q <- sum(p)
+  scorelist[[i]] <- q
   
+  ## this just checks for the answers doesn't calculate points for rounds 2 onwards 
   
 }
 
-p <- as.numeric(ans[[1]]%in%ans[[2]])
-q <- sum(p)
+scores <- unlist(scorelist)
+leaderboard <- cbind(data.frame(players, scores))
+colnames(leaderboard) <- c("Player_name", "Score")

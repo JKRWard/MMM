@@ -57,7 +57,8 @@ for(j in 1:length(fl)){
 
 
 # check where in the list the master file is 
-master <- ans[[5]]
+ans
+master <- ans[[7]]
 
 # players 
 
@@ -68,7 +69,7 @@ players <- sub(".csv", "", players)
 scorelist <- list()
 for (i in 1: length(ans)){
   
-  p <- as.numeric(ans[[i]]%in%ans[[5]])
+  p <- as.numeric(ans[[i]]%in%ans[[7]])
   q <- sum(p)
   scorelist[[i]] <- q
   

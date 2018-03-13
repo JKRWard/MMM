@@ -80,3 +80,5 @@ for (i in 1: length(ans)){
 scores <- unlist(scorelist)
 leaderboard <- cbind(data.frame(players, scores))
 colnames(leaderboard) <- c("Player_name", "Score")
+
+leaderboard <- slice(leaderboard, -7)

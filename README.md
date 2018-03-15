@@ -5,7 +5,7 @@ Repository containing our MMM2018 bracket entries.
 
 Who will win? Will Kirsty retain her title as queen of the mammals?? 
 
-##Leaderboard
+## Leaderboard
 
 Player   | Score
 ---------|--------

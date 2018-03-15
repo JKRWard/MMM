@@ -58,7 +58,7 @@ for(j in 1:length(fl)){
 
 # check where in the list the master file is 
 ans
-master <- ans[[7]]
+master <- ans[[8]]
 
 # players 
 
@@ -66,10 +66,11 @@ players <- sub(".*_", "", licsv)
 players <- sub(".csv", "", players)
 
 ### check answers 
+
 scorelist <- list()
-for (i in 1: length(ans)){
+for (i in 1: 12){
   
-  p <- as.numeric(ans[[i]]%in%ans[[7]])
+  p <- ans[[i]] ==ans[[8]]
   q <- sum(p)
   scorelist[[i]] <- q
   
@@ -81,4 +82,4 @@ scores <- unlist(scorelist)
 leaderboard <- cbind(data.frame(players, scores))
 colnames(leaderboard) <- c("Player_name", "Score")
 
-leaderboard <- slice(leaderboard, -7)
+leaderboard <- slice(leaderboard, -8)

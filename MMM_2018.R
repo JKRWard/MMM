@@ -83,3 +83,13 @@ leaderboard <- cbind(data.frame(players, scores))
 colnames(leaderboard) <- c("Player_name", "Score")
 
 leaderboard <- slice(leaderboard, -8)
+
+
+### points per round 
+# wildcard - 1  1 
+# round 1 - 1   2:33
+# round 2 - 2   34:49
+# sweet 16 - 3  50:57
+# elite 8 - 5   58:61
+# final roar - 8 62:63
+#winner -13      64

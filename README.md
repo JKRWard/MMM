@@ -12,10 +12,10 @@ Player   | Score
 Aileen   |12
 Becca    |9
 Gav      |4
-Jess     |13
+Jess     |14
 Kirsty   |11
 Laura    |11
-Mark     |12
+Mark     |13
 Matt     |9
 Olaf     |13
 Pete     |9

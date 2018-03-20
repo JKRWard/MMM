@@ -1,12 +1,3 @@
----
-title: "March Mammal Madness 2018"
-output: 
-  html_document:  
-        keep_md: true 
-  
----
-
-
 
 
 

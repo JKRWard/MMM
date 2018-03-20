@@ -9,14 +9,16 @@ Who will win? Will Kirsty retain her title as queen of the mammals??
 
 Player   | Score
 ---------|--------
-Aileen   |12
-Becca    |9
-Gav      |4
-Jess     |14
-Kirsty   |11
-Laura    |11
-Mark     |13
-Matt     |9
-Olaf     |13
-Pete     |9
-Simone   |9
+Aileen   |16
+Becca    |16
+Gav      |9
+Jess     |20
+Kirsty   |16
+Laura    |15
+Mark     |20
+Matt     |13
+Olaf     |19
+Pete     |12
+Simone   |10
+
+

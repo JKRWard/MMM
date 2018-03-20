@@ -82,7 +82,7 @@ scores <- unlist(scorelist)
 leaderboard <- cbind(data.frame(players, scores))
 colnames(leaderboard) <- c("Player_name", "Score")
 
-leaderboard <- slice(leaderboard, -8)
+leaderboard <- leaderboard %>% slice( -8) %>% arrange(desc(Score))
 
 
 ### points per round 

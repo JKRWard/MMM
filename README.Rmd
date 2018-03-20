@@ -1,6 +1,8 @@
 ---
 title: "March Mammal Madness 2018"
-output: github_document
+output: 
+  html_document:  
+        keep_md: true 
   
 ---
 

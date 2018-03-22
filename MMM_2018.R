@@ -68,21 +68,31 @@ players <- sub(".csv", "", players)
 ### check answers 
 
 scorelist <- list()
-for (i in 1: 12){
+for (i in 1: length(players)){
   
-  p <- ans[[i]] ==ans[[8]]
-  q <- sum(p)
-  scorelist[[i]] <- q
+  ## this checks answers for each round 
+  playa <- ans[[i]]
+  mstr <- ans[[8]]
+  rnd1 <- playa[1:33] == mstr[1:33]
+  rnd2 <- playa[34:49] == mstr[34:49]
+  sweet <- playa[50:57]==mstr[50:57]
+  elite <- playa[58:61]==mstr[58:61]
+  roar <- playa[62:63]==mstr[62:63]
+  win <- playa[64]==mstr[64]
   
-  ## this just checks for the answers doesn't calculate points for rounds 2 onwards 
   
+  pts <- c(sum(rnd1),sum(rnd2*2), sum(sweet*3), sum(elite*5), sum(roar*8),sum(win*13))
+  scorelist[[i]] <- pts
 }
 
-scores <- unlist(scorelist)
-leaderboard <- cbind(data.frame(players, scores))
-colnames(leaderboard) <- c("Player_name", "Score")
 
-leaderboard <- leaderboard %>% slice( -8) %>% arrange(desc(Score))
+
+
+leaderboard <- data.frame(matrix(unlist(scorelist), nrow=12, byrow=T))
+leaderboard <- cbind(data.frame(players, leaderboard))
+colnames(leaderboard) <- c("Player_name", "Round 1", "Round 2", "Sweet 16", "Elite 8", "Final roar", "Winner")
+
+leaderboard <- leaderboard %>% slice( -8) %>%mutate(Total= rowSums(.[2:7])) %>%  arrange(desc(Total))
 
 
 ### points per round 

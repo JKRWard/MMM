@@ -72,7 +72,7 @@ for (i in 1: length(players)){
   
   ## this checks answers for each round 
   playa <- ans[[i]]
-  mstr <- ans[[8]]
+  mstr <- ans[[9]]
   rnd1 <- playa[1:33] == mstr[1:33]
   rnd2 <- playa[34:49] == mstr[34:49]
   sweet <- playa[50:57]==mstr[50:57]
@@ -87,12 +87,11 @@ for (i in 1: length(players)){
 
 
 
+tardy <- c(1,0,0,0,0,0,1,0,0,1,1,1,0)
+leaderboard <- cbind(data.frame(players,tardy, leaderboard))
+colnames(leaderboard) <- c("Player name", " Tardi bonus", "Round 1", "Round 2", "Sweet 16", "Elite 8", "Final roar", "Winner")
 
-leaderboard <- data.frame(matrix(unlist(scorelist), nrow=12, byrow=T))
-leaderboard <- cbind(data.frame(players, leaderboard))
-colnames(leaderboard) <- c("Player_name", "Round 1", "Round 2", "Sweet 16", "Elite 8", "Final roar", "Winner")
-
-leaderboard <- leaderboard %>% slice( -8) %>%mutate(Total= rowSums(.[2:7])) %>%  arrange(desc(Total))
+leaderboard <- leaderboard %>% slice( -9) %>%mutate(Total= rowSums(.[2:8])) %>%  arrange(desc(Total))
 
 
 ### points per round 

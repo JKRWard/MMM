@@ -16,7 +16,7 @@ Leaderboard
 Player name
 </th>
 <th style="text-align:right;">
-Tardigrade bonus
+Tardigrade tally
 </th>
 <th style="text-align:right;">
 Round 1

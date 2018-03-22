@@ -89,7 +89,7 @@ for (i in 1: length(players)){
 
 tardy <- c(1,0,0,0,0,0,1,0,0,1,1,1,0)
 leaderboard <- cbind(data.frame(players,tardy, leaderboard))
-colnames(leaderboard) <- c("Player name", " Tardi bonus", "Round 1", "Round 2", "Sweet 16", "Elite 8", "Final roar", "Winner")
+colnames(leaderboard) <- c("Player name", " Tardigrade tally", "Round 1", "Round 2", "Sweet 16", "Elite 8", "Final roar", "Winner")
 
 leaderboard <- leaderboard %>% slice( -9) %>%mutate(Total= rowSums(.[2:8])) %>%  arrange(desc(Total))
 

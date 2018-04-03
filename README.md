@@ -59,16 +59,16 @@ Conor
 15
 </td>
 <td style="text-align:right;">
-0
+10
 </td>
 <td style="text-align:right;">
-0
+8
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;font-weight: bold;">
-62
+80
 </td>
 </tr>
 <tr>
@@ -88,16 +88,45 @@ KirstyL
 6
 </td>
 <td style="text-align:right;">
-0
+10
 </td>
 <td style="text-align:right;">
-0
+8
 </td>
 <td style="text-align:right;">
 0
 </td>
 <td style="text-align:right;font-weight: bold;">
-57
+75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BeccaS
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;font-weight: bold;">
+66
 </td>
 </tr>
 <tr>
@@ -131,22 +160,51 @@ MarkS
 </tr>
 <tr>
 <td style="text-align:left;">
-BeccaS
+AileenM
 </td>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
-23
+21
 </td>
 <td style="text-align:right;">
-24
+14
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
 0
+</td>
+<td style="text-align:right;font-weight: bold;">
+54
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JessW
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+5
 </td>
 <td style="text-align:right;">
 0
@@ -155,7 +213,36 @@ BeccaS
 0
 </td>
 <td style="text-align:right;font-weight: bold;">
-53
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OlafB
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;font-weight: bold;">
+47
 </td>
 </tr>
 <tr>
@@ -185,93 +272,6 @@ LauraB
 </td>
 <td style="text-align:right;font-weight: bold;">
 46
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-JessW
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;font-weight: bold;">
-42
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-OlafB
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-24
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;font-weight: bold;">
-42
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-AileenM
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-21
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;font-weight: bold;">
-41
 </td>
 </tr>
 <tr>

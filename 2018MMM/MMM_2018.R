@@ -1,20 +1,23 @@
-library(tidyverse)
+librarian::shelf(tidyverse, here)
 ################################################################################
 ####################### MMM_2018 scoring #######################################
 ################################################################################
 
+# create a list of all csv files in the folder for this year
 
+fils <- list.files (path = "2018MMM", pattern="*.csv") 
 
-# create a list of all csv files in the directory 
+# create a list in which to store entries
 fl <- list()
-licsv <- dir(pattern="*.csv")
-for (k in 1:length(licsv)){
-  fl[[k]] <- read_csv(licsv[k])
+
+#loop through files and add to the list
+#using here means that I can easily read files in a subdirectory
+for (k in 1:length(fils)){
+  fl[[k]] <- read_csv(here("2018MMM",fils[k]))
 }
 
+rm(k)
 # format the data creating a single vector with all answers from each player
-
-
 ans <- list()
 for(j in 1:length(fl)){
   
@@ -58,12 +61,12 @@ for(j in 1:length(fl)){
 
 # check where in the list the master file is 
 ans
-master <- ans[[8]]
+master <- ans[[9]]
 
-# players 
+# create a list of players names
 
-players <- sub(".*_", "", licsv)
-players <- sub(".csv", "", players)
+players <- sub(".*_", "", fils) %>% sub(".csv", "",.)
+#players <- sub(".csv", "", players)
 
 ### check answers 
 
@@ -85,13 +88,22 @@ for (i in 1: length(players)){
   scorelist[[i]] <- pts
 }
 
-
-
+leaderboard <- as.data.frame(do.call(rbind, scorelist))
+colnames(leaderboard) <- c("Round_1", "Round_2", "Sweet_16", "Elite_8", "Final_roar", "Winner")
 tardy <- c(1,0,0,0,0,0,1,0,0,1,1,1,0)
-leaderboard <- cbind(data.frame(players,tardy, leaderboard))
-colnames(leaderboard) <- c("Player name", " Tardigrade tally", "Round 1", "Round 2", "Sweet 16", "Elite 8", "Final roar", "Winner")
 
-leaderboard <- leaderboard %>% slice( -9) %>%mutate(Total= rowSums(.[2:8])) %>%  arrange(desc(Total))
+
+leaderboard$Player_name <- players
+leaderboard$Tardigrade_tally <- tardy
+
+
+
+leaderboard <- leaderboard %>% 
+  select(Player_name, Tardigrade_tally, Round_1, Round_2, Sweet_16, Elite_8, 
+         Final_roar, Winner) %>% 
+  slice( -9) %>%
+  mutate(Total= rowSums(.[2:8])) %>%
+  arrange(desc(Total))
 
 
 ### points per round 

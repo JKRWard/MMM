@@ -22,7 +22,7 @@ Leaderboard
 # I'm lazy so I use the librarian package when loading my packages
 # note that using this package will install packages if they are not already 
 # contained within your library
-librarian::shelf(tidyverse, here)
+librarian::shelf(tidyverse, here, plotly)
 ################################################################################
 ####################### MMM_2018 scoring #######################################
 ################################################################################
@@ -129,6 +129,27 @@ leaderboard <- leaderboard %>%
   mutate(Total= rowSums(.[2:8])) %>%
   arrange(desc(Total))
 
+# creating a plot with cumulative points 
+#create sum column for after each round 
+pl_dat <- leaderboard %>% mutate(r2 = Round_1+Round_2) %>% mutate(r3 = r2+Sweet_16)
+
+pl_dat <- leaderboard %>% 
+  mutate(r1 =rowSums(.[2:3])) %>% 
+  mutate(r2 =rowSums(.[2:4])) %>% 
+  mutate(r3 =rowSums(.[2:5])) %>%
+  mutate(r4 =rowSums(.[2:6])) %>% 
+  mutate(r5 =rowSums(.[2:7])) %>% 
+  rename(r6 = Total) %>%
+  select(Player_name, r1, r2, r3, r4, r5, r6) %>% 
+  gather("Round", "points", 2:7)
+
+pl_dat$Round <- gsub("r","",pl_dat$Round)
+
+p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Player_name)) + 
+  geom_line() +
+  ggtitle("Point accumulation")
+#+ scale_colour_manual(values=cols) 
+  
 
 
 ### points per round 
@@ -144,5 +165,10 @@ leaderboard <- leaderboard %>%
 
 ```{r}
 knitr::kable(leaderboard)
+```
+
+```{r}
+p
+#plotly::ggplotly(p)
 ```
 

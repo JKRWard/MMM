@@ -1,7 +1,6 @@
 March Mammal Madness
 ================
 Jessica Ward
-12 February 2019
 
 Repository containing our MMM2018 bracket entries.
 

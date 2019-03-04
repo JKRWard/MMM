@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 Are you playing March Mammal Madness this year?? 
 
-Check out [#2019MMM](https://twitter.com/search?f=tweets&vertical=default&q=%232019MMM&src=typd)or [@2019MMMletsgo](https://twitter.com/2019MMMletsgo) for all the latest tweets. or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
+Check out [#2019MMM](https://twitter.com/search?f=tweets&vertical=default&q=%232019MMM&src=typd) for all the latest tweets. or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
 
 <img src= "2019_Bracket.png" class= "center">
 

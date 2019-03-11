@@ -18,7 +18,7 @@ Check out [#2019MMM](https://twitter.com/search?f=tweets&vertical=default&q=%232
 <img src= "2019_Bracket.png" class= "center">
 
 # 2019 MEP Leaderboard
-```{r include=FALSE, eval = FALSE}
+```{r include=FALSE, eval = TRUE}
 
 # I'm lazy so I use the librarian package when loading my packages
 # note that using this package will install packages if they are not already 
@@ -151,6 +151,20 @@ p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Pl
   ggtitle("Point accumulation")
 #+ scale_colour_manual(values=cols) 
   
+# working out the most popular winner
+winners <- vector(length = length(players))
+
+for (i in 1:length(winners)){
+
+  this_one <- ans[[i]]
+  winners[i] <- this_one[64]
+  
+}
+
+outcomes <- data.frame(players, winners)
+outcomes <- outcomes %>% slice(.,-15)
+# creating line breaks for plotting 
+levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 
 
 ### points per round 
@@ -167,22 +181,7 @@ p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Pl
 ```{r}
 #what is the most popular winner 
 
-winners <- vector(length = length(players))
-
-for (i in 1:length(winners)){
-
-  this_one <- ans[[i]]
-  winners[i] <- this_one[64]
-  
-}
-
-outcomes <- data.frame(players, winners)
-outcomes <- outcomes %>% slice(.,-15)
-# creating line breaks for plotting 
-levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
-
-
-ggplot(data = outcomes) + 
+ggplot2::ggplot(data = outcomes) + 
   geom_bar(mapping = aes(x = winners,  fill = players))+
   ggtitle("Predicted winners")+
   theme_classic()

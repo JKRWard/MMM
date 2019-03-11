@@ -167,6 +167,27 @@ p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Pl
 ```{r}
 #what is the most popular winner 
 
+winners <- vector(length = length(players))
+
+for (i in 1:length(winners)){
+
+  this_one <- ans[[i]]
+  winners[i] <- this_one[64]
+  
+}
+
+outcomes <- data.frame(players, winners)
+outcomes <- outcomes %>% slice(.,-15)
+# creating line breaks for plotting 
+levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
+
+
+ggplot(data = outcomes) + 
+  geom_bar(mapping = aes(x = winners,  fill = players))+
+  ggtitle("Predicted winners")+
+  theme_classic()
+
+
 
 ```
 

@@ -244,7 +244,7 @@ librarian::shelf(tidyverse, here, plotly)
 
 # create a list of all csv files in the folder for this year
 
-fils <- list.files (path = "2019MMM", pattern="*.csv") 
+fils <- list.files (path = "2019BIO2029", pattern="*.xlsx") 
 
 # create a list in which to store entries
 fl <- list()
@@ -252,7 +252,7 @@ fl <- list()
 #loop through files and add to the list
 #using here means that I can easily read files in a subdirectory
 for (k in 1:length(fils)){
-  fl[[k]] <- read_csv(here("2019BIO2029",fils[k]))
+  fl[[k]] <- read_xlsx(here("2019BIO2029",fils[k]))
 }
 
 
@@ -262,11 +262,16 @@ for(j in 1:length(fl)){
   
   mast <- fl[[j]]
   wild <- mast %>%  select(Wildcard) %>%filter(!is.na(Wildcard))
-  a <- select(mast, Round_1:Round_5)
-  b <- select(mast, Round_5_1:Round_1_1) %>% rename(Round_1 = Round_1_1 ,Round_2 = 
-                                                      Round_2_1, Round_3 = Round_3_1, Round_4 = Round_4_1, 
-                                                    Round_5 = Round_5_1 )
-  
+   a <- select(mast, Round_1..3:Round_5..7) %>% rename(Round_1 = Round_1..3, 
+                                                      Round_2 = Round_2..4, 
+                                                      Round_3 = Round_3..5,
+                                                      Round_4 = Round_4..6, 
+                                                    Round_5 = Round_5..7 )
+  b <- select(mast, Round_5..9:Round_1..13) %>% rename(Round_1 = Round_1..13,
+                                                       Round_2 = Round_2..12,
+                                                       Round_3 = Round_3..11, 
+                                                       Round_4 = Round_4..10, 
+                                                    Round_5 = Round_5..9 )
   cc <- bind_rows(a,b)
   r1 <- cc %>% select(Round_1) %>% filter(!is.na(Round_1))
   r1 <- r1$Round_1
@@ -297,16 +302,46 @@ for(j in 1:length(fl)){
 
 # 1 = same 0 = different -- ony get points for answers that are the same as the master
 
+######################## generating the answers 
+mast <- read_csv(here("MMM19_AAnswers.csv"))
+  wild <- mast %>%  select(Wildcard) %>%filter(!is.na(Wildcard))
+  a <- select(mast, Round_1:Round_5)
+  b <- select(mast, Round_5_1:Round_1_1) %>% rename(Round_1 = Round_1_1 ,Round_2 =
+                                                      Round_2_1, Round_3 = Round_3_1, Round_4 = Round_4_1,
+                                                    Round_5 = Round_5_1 )
+
+  cc <- bind_rows(a,b)
+  r1 <- cc %>% select(Round_1) %>% filter(!is.na(Round_1))
+  r1 <- r1$Round_1
+
+  r2 <- cc %>% select(Round_2) %>% filter(!is.na(Round_2))
+  r2 <- r2$Round_2
+
+  r3 <- cc %>% select(Round_3) %>% filter(!is.na(Round_3))
+  r3 <- r3$Round_3
+
+  r4 <- cc %>% select(Round_4) %>% filter(!is.na(Round_4))
+  r4 <- r4$Round_4
+
+  r5 <- cc %>% select(Round_5) %>% filter(!is.na(Round_5))
+  r5 <- r5$Round_5
+
+  wild <- wild$Wildcard
+
+  fin <- mast %>% select(Final) %>% filter(!is.na(Final))
+  fin <- fin$Final
+
+  master <- c(wild,r1,r2,r3,r4,r5,fin)
 
 # check where in the list the master file is 
-ans
-master <- ans[[1]]
+#ans
+#master <- ans[[1]]
 
 # create a list of players names
 
-players <- sub(".*_", "", fils) %>% sub(".csv", "",.)
-#players <- sub(".csv", "", players)
 
+players <- sub(".xlsx", "", fils)
+#course <- 
 ### check answers 
 
 scorelist <- list()
@@ -314,7 +349,7 @@ for (i in 1: length(players)){
   
   ## this checks answers for each round 
   playa <- ans[[i]]
-  mstr <- ans[[1]]
+  mstr <- master
   rnd1 <- playa[1:33] == mstr[1:33]
   rnd2 <- playa[34:49] == mstr[34:49]
   sweet <- playa[50:57]==mstr[50:57]
@@ -329,18 +364,17 @@ for (i in 1: length(players)){
 
 leaderboard <- as.data.frame(do.call(rbind, scorelist))
 colnames(leaderboard) <- c("Round_1", "Round_2", "Sweet_16", "Elite_8", "Final_roar", "Winner")
-tardy <- c(1,0,0,0,0,0,1,0,0,1,1,1,0)
+
 
 
 leaderboard$Player_name <- players
-leaderboard$Tardigrade_tally <- tardy
+
 
 
 
 leaderboard <- leaderboard %>% 
-  select(Player_name, Tardigrade_tally, Round_1, Round_2, Sweet_16, Elite_8, 
+  select(Player_name,Round_1, Round_2, Sweet_16, Elite_8, 
          Final_roar, Winner) %>% 
-  slice( -9) %>%
   mutate(Total= rowSums(.[2:8])) %>%
   arrange(desc(Total))
 

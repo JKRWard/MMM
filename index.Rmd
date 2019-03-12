@@ -81,12 +81,43 @@ for(j in 1:length(fl)){
 
 ### counting points 
 
+######################## generating the answers 
+mast <- read_csv(here("MMM19_AAnswers.csv"))
+  wild <- mast %>%  select(Wildcard) %>%filter(!is.na(Wildcard))
+  a <- select(mast, Round_1:Round_5)
+  b <- select(mast, Round_5_1:Round_1_1) %>% rename(Round_1 = Round_1_1 ,Round_2 =
+                                                      Round_2_1, Round_3 = Round_3_1, Round_4 = Round_4_1,
+                                                    Round_5 = Round_5_1 )
+
+  cc <- bind_rows(a,b)
+  r1 <- cc %>% select(Round_1) %>% filter(!is.na(Round_1))
+  r1 <- r1$Round_1
+
+  r2 <- cc %>% select(Round_2) %>% filter(!is.na(Round_2))
+  r2 <- r2$Round_2
+
+  r3 <- cc %>% select(Round_3) %>% filter(!is.na(Round_3))
+  r3 <- r3$Round_3
+
+  r4 <- cc %>% select(Round_4) %>% filter(!is.na(Round_4))
+  r4 <- r4$Round_4
+
+  r5 <- cc %>% select(Round_5) %>% filter(!is.na(Round_5))
+  r5 <- r5$Round_5
+
+  wild <- wild$Wildcard
+
+  fin <- mast %>% select(Final) %>% filter(!is.na(Final))
+  fin <- fin$Final
+
+  master <- c(wild,r1,r2,r3,r4,r5,fin)
+
 # 1 = same 0 = different -- ony get points for answers that are the same as the master
 
 
 # check where in the list the master file is 
 #ans
-master <- ans[[14]]
+
 
 # create a list of players names
 
@@ -100,7 +131,8 @@ for (i in 1: length(players)){
   
   ## this checks answers for each round 
   playa <- ans[[i]]
-  mstr <- ans[[1]]
+  mstr <- master
+  #mstr <- ans[[1]]
   rnd1 <- playa[1:33] == mstr[1:33]
   rnd2 <- playa[34:49] == mstr[34:49]
   sweet <- playa[50:57]==mstr[50:57]
@@ -126,7 +158,6 @@ leaderboard$Player_name <- players
 leaderboard <- leaderboard %>% 
   select(Player_name,  Round_1, Round_2, Sweet_16, Elite_8, 
          Final_roar, Winner) %>% 
-  slice( -14) %>%
   mutate(Total= rowSums(.[2:7])) %>%
   arrange(desc(Total))
 
@@ -162,7 +193,6 @@ for (i in 1:length(winners)){
 }
 
 outcomes <- data.frame(players, winners)
-outcomes <- outcomes %>% slice(.,-15)
 # creating line breaks for plotting 
 levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 
@@ -191,7 +221,7 @@ ggplot2::ggplot(data = outcomes) +
 ```
 
 
-```{r eval= FALSE}
+```{r eval= TRUE}
 knitr::kable(leaderboard)
 ```
 

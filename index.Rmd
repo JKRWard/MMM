@@ -232,12 +232,12 @@ plotly::ggplotly(p)
 
 
 # 2019 BIO2029 
-```{r include=FALSE, eval=FALSE}
+```{r include=FALSE, eval=TRUE}
 
 # I'm lazy so I use the librarian package when loading my packages
 # note that using this package will install packages if they are not already 
 # contained within your library
-librarian::shelf(tidyverse, here, plotly)
+librarian::shelf(tidyverse, here, plotly,readxl)
 ################################################################################
 ####################### MMM_2018 scoring #######################################
 ################################################################################
@@ -369,13 +369,14 @@ colnames(leaderboard) <- c("Round_1", "Round_2", "Sweet_16", "Elite_8", "Final_r
 
 leaderboard$Player_name <- players
 
-
+#separate players and courses then do something with the course points
+#average points according to each course? or total points - to encourage more players
 
 
 leaderboard <- leaderboard %>% 
   select(Player_name,Round_1, Round_2, Sweet_16, Elite_8, 
          Final_roar, Winner) %>% 
-  mutate(Total= rowSums(.[2:8])) %>%
+  mutate(Total= rowSums(.[2:7])) %>%
   arrange(desc(Total))
 
 # creating a plot with cumulative points 
@@ -400,6 +401,21 @@ p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Pl
 #+ scale_colour_manual(values=cols) 
   
 
+# working out the most popular winner
+winners <- vector(length = length(players))
+
+for (i in 1:length(winners)){
+
+  this_one <- ans[[i]]
+  winners[i] <- this_one[64]
+  
+}
+
+outcomes <- data.frame(players, winners)
+# creating line breaks for plotting 
+levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
+
+
 
 ### points per round 
 # wildcard - 1  1 
@@ -411,8 +427,16 @@ p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Pl
 #winner -13      64
 ```
 
+```{r}
+ggplot2::ggplot(data = outcomes) + 
+  geom_bar(mapping = aes(x = winners,  fill = players))+
+  ggtitle("Predicted winners")+
+  theme_classic()
 
-```{r eval=FALSE}
+```
+
+
+```{r eval=TRUE}
 knitr::kable(leaderboard)
 ```
 

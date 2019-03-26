@@ -15,7 +15,7 @@ Are you playing March Mammal Madness this year??
 
 Check out [#2019MMM](https://twitter.com/search?f=tweets&vertical=default&q=%232019MMM&src=typd) for all the latest tweets. Or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
 
-<img src= "https://pbs.twimg.com/media/D2OxZB8XgAACxfr.jpg:large" class= "center">
+<img src= "https://pbs.twimg.com/media/D2jXoU5U8AAjWeU.jpg:large" class= "center">
 
 # 2019 MEP Leaderboard
 ```{r include=FALSE, eval = TRUE}

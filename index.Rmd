@@ -17,6 +17,8 @@ Check out [#2019MMM](https://twitter.com/search?f=tweets&vertical=default&q=%232
 
 <img src= "https://pbs.twimg.com/media/D3HK3D0W0AA3Kk4.jpg:large" class= "center">
 
+:( tiger is winning
+
 # 2019 MEP Leaderboard
 ```{r include=FALSE, eval = TRUE}
 

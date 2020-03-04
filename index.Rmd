@@ -25,7 +25,9 @@ Check out [#2019MMM](https://twitter.com/search?f=tweets&vertical=default&q=%232
 # I'm lazy so I use the librarian package when loading my packages
 # note that using this package will install packages if they are not already 
 # contained within your library
-librarian::shelf(tidyverse, here, plotly)
+library(tidyverse)
+library(here)
+library(plotly)
 ################################################################################
 ####################### MMM_2018 scoring #######################################
 ################################################################################
@@ -236,10 +238,10 @@ plotly::ggplotly(p)
 # 2019 BIO2029 
 ```{r include=FALSE, eval=TRUE}
 
-# I'm lazy so I use the librarian package when loading my packages
-# note that using this package will install packages if they are not already 
-# contained within your library
-librarian::shelf(tidyverse, here, plotly,readxl)
+library(tidyverse)
+library(here)
+library(plotly)
+library(readxl)
 ################################################################################
 ####################### MMM_2018 scoring #######################################
 ################################################################################
@@ -264,17 +266,17 @@ for(j in 1:length(fl)){
   
   mast <- fl[[j]]
   wild <- mast %>%  select(Wildcard) %>%filter(!is.na(Wildcard))
-   a <- select(mast, Round_1..3:Round_5..7) %>% rename(Round_1 = Round_1..3, 
-                                                      Round_2 = Round_2..4, 
-                                                      Round_3 = Round_3..5,
-                                                      Round_4 = Round_4..6, 
-                                                    Round_5 = Round_5..7 )
-  b <- select(mast, Round_5..9:Round_1..13) %>% rename(Round_1 = Round_1..13,
-                                                       Round_2 = Round_2..12,
-                                                       Round_3 = Round_3..11, 
-                                                       Round_4 = Round_4..10, 
-                                                    Round_5 = Round_5..9 )
-  cc <- bind_rows(a,b)
+   a <- select(mast,"Round_1...3":"Round_5...7" ) %>% rename(Round_1 = 'Round_1...3', 
+                                                             Round_2 = 'Round_2...4', 
+                                                             Round_3 = 'Round_3...5',
+                                                             Round_4 = 'Round_4...6', 
+                                                             Round_5 = 'Round_5...7'  )
+  b <- select(mast, "Round_5...9":"Round_1...13") %>% rename( Round_1 =  'Round_1...13',
+                                                              Round_2 =  'Round_2...12',
+                                                              Round_3 =  'Round_3...11', 
+                                                              Round_4 =  'Round_4...10', 
+                                                              Round_5 =  'Round_5...9' )
+  cc <- bind_rows(a,b)      
   r1 <- cc %>% select(Round_1) %>% filter(!is.na(Round_1))
   r1 <- r1$Round_1
   
@@ -458,10 +460,9 @@ Leaderboard
 
 ```{r include=FALSE}
 
-# I'm lazy so I use the librarian package when loading my packages
-# note that using this package will install packages if they are not already 
-# contained within your library
-librarian::shelf(tidyverse, here, plotly)
+library(here)
+library(tidyverse)
+library(plotly)
 ################################################################################
 ####################### MMM_2018 scoring #######################################
 ################################################################################

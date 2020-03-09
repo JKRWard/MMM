@@ -677,8 +677,15 @@ round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar
   mutate(Round = 5) %>% 
   select(Player_name, Ranking, Round)
 
+round6 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar, Winner) %>% 
+  mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>% 
+  arrange(desc(Winner)) %>% 
+  mutate(Ranking = rank(Winner, ties.method = "min")) %>% 
+  mutate(Ranking = 17-Ranking) %>% 
+  mutate(Round = 6) %>% 
+  select(Player_name, Ranking, Round)
 
-rankall <- bind_rows(round1,round2,round3,round4,round5)
+rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
 
 source(here::here("geom_bump.R"))
 library(cowplot)
@@ -691,8 +698,8 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
   geom_text(data = rankall %>% filter(Round == max(Round)),
             aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
   geom_bump(aes(smooth = 8), size = 2) +
-  scale_x_continuous(limits = c(1, 6),
-                     breaks = seq(1, 5, 1)) +
+  scale_x_continuous(limits = c(1, 7),
+                     breaks = seq(1, 6, 1)) +
   theme_minimal_grid(font_size = 14, line_size = 0) +
   theme(legend.position = "none",
         panel.grid.major = element_blank()) +

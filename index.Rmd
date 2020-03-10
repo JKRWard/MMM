@@ -221,7 +221,9 @@ ggplot2::ggplot(data = outcomes) +
 
 
 ```
-
+```{r eval= TRUE}
+knitr::kable(leaderboard)
+```
 
 # 2020 BIO2029 Leaderboard
 ```{r 2020bio2029}
@@ -424,6 +426,12 @@ ggplot2::ggplot(data = outcomes) +
 
 
 
+```
+
+
+
+```{r eval= TRUE}
+knitr::kable(leaderboard)
 ```
 
 # 2019 MEP Leaderboard

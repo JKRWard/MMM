@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 Are you playing March Mammal Madness this year?? 
 
-Check out [#2020MMM](https://twitter.com/search?q=%232020MMM&src=typeahead_click) for all the latest tweets. Or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
+Check out [#2020MMM](https://twitter.com/search?q=%232020MMM&src=typeahead_click) for all the latest tweets, check out the [play by play](https://wakelet.com/wake/ec23f280-bddd-41fa-9879-31249f38b515) Or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
 
 <img src= "https://1.bp.blogspot.com/-I1rQLndyvd8/Xlji_FnnCNI/AAAAAAAAMus/0DfvLvTwEU0zRtG5KrAYdcWubh77nx6kQCNcBGAsYHQ/s640/Mammal%2BMarch%2BMadness%2B2020%2BBracket%2Bv1_0_English.png" class= "center">
 

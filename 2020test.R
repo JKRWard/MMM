@@ -74,7 +74,7 @@ round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>%
   select(Player_name, Ranking, Round)
 
 round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar) %>% 
-  mutate(Finalroar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>% 
+  mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>% 
   arrange(desc(Final_roar)) %>% 
   mutate(Ranking = rank(Final_roar, ties.method = "min")) %>% 
   mutate(Ranking = 17-Ranking) %>% 
@@ -84,15 +84,32 @@ round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar
 
 rankall <- bind_rows(round1,round2,round3,round4,round5)
 
-
-ggplot(df, aes(Round, Ranking, color = Player_name)) +
-  geom_bump()
+source(here::here("geom_bump.R"))
+library(cowplot)
+library(viridis)
+library(ggrepel)
+ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
+  geom_point(size = 7) +
+  #geom_text(data = rankall %>% filter(Round == min(Round)),
+           # aes(x = 0.5, label = Player_name), position=position_jitter(height=01),size = 4) +
+  geom_text(data = rankall %>% filter(Round == max(Round)),
+            aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
+  geom_bump(aes(smooth = 8), size = 2) +
+  scale_x_continuous(limits = c(1, 6),
+                     breaks = seq(1, 5, 1)) +
+  theme_minimal_grid(font_size = 14, line_size = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank()) +
+  labs(y = "RANK",
+       x = "Round") +
+  scale_y_reverse(breaks = seq(1, 16,1))+
+  scale_color_manual(values = viridis(n = 16))
 
 ##
 
 # checking 2020 file input ------------------------------------------------
 
-
+library(readxl)
 
 fils <- list.files (path = "2020MEP", pattern="*.xlsx") 
 

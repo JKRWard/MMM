@@ -210,6 +210,84 @@ levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 ```
 
 
+
+```{r eval= TRUE}
+knitr::kable(leaderboard)
+```
+
+```{r}
+df <- leaderboard
+round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
+  mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
+  mutate(Ranking = 17-Ranking) %>% 
+  mutate(Round = 1) %>% 
+  select(-Round_1)
+
+round2 <- select(df, Player_name,Round_1:Round_2) %>%
+  mutate(Round_2 = Round_1 + Round_2) %>%
+  arrange(desc(Round_2)) %>%
+  mutate(Ranking = rank(Round_2, ties.method = "max")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 2) %>%
+  select(- Round_1, -Round_2)
+# 
+# round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>% 
+#   mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+#   arrange(desc(Sweet_16)) %>% 
+#   mutate(Ranking = rank(Sweet_16, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 3) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>% 
+#   mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
+#   arrange(desc(Elite_8)) %>% 
+#   mutate(Ranking = rank(Elite_8, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 4) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar) %>% 
+#   mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>% 
+#   arrange(desc(Final_roar)) %>% 
+#   mutate(Ranking = rank(Final_roar, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 5) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# round6 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar, Winner) %>% 
+#   mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>% 
+#   arrange(desc(Winner)) %>% 
+#   mutate(Ranking = rank(Winner, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 6) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
+
+rankall <- bind_rows(round1, round2)
+source(here::here("geom_bump.R"))
+library(cowplot)
+library(viridis)
+library(ggrepel)
+ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
+  geom_point(size = 7) +
+  #geom_text(data = rankall %>% filter(Round == min(Round)),
+           # aes(x = 0.5, label = Player_name), position=position_jitter(height=01),size = 4) +
+  geom_text_repel(data = rankall %>% filter(Round == max(Round)),
+            aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
+  geom_bump(aes(smooth = 8), size = 2) +
+  scale_x_continuous(limits = c(1, 7),
+                     breaks = seq(1, 6, 1)) +
+  theme_minimal_grid(font_size = 14, line_size = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank()) +
+  labs(y = "RANK",
+       x = "Round") +
+  scale_y_reverse(breaks = seq(1, 16,1))+
+  scale_color_manual(values = viridis(n = 16))
+```
+
 ```{r, }
 #what is the most popular winner 
 
@@ -221,9 +299,7 @@ ggplot2::ggplot(data = outcomes) +
 
 
 ```
-```{r eval= TRUE}
-knitr::kable(leaderboard)
-```
+
 
 # 2020 BIO2029 Leaderboard
 ```{r 2020bio2029}
@@ -416,6 +492,88 @@ levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 ```
 
 
+```{r}
+df <- leaderboard
+round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
+  mutate(Ranking = rank(Round_1, ties.method = "min")) %>% 
+  mutate(Ranking = 13-Ranking) %>% 
+  mutate(Round = 1) %>% 
+  select(-Round_1)
+
+round2 <- select(df, Player_name,Round_1:Round_2) %>%
+  mutate(Round_2 = Round_1 + Round_2) %>%
+  arrange(desc(Round_2)) %>%
+  mutate(Ranking = rank(Round_2, ties.method = "min")) %>%
+  mutate(Ranking = 13-Ranking) %>%
+  mutate(Round = 2) %>%
+  select(- Round_1, -Round_2)
+# 
+# round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>% 
+#   mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+#   arrange(desc(Sweet_16)) %>% 
+#   mutate(Ranking = rank(Sweet_16, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 3) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>% 
+#   mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
+#   arrange(desc(Elite_8)) %>% 
+#   mutate(Ranking = rank(Elite_8, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 4) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar) %>% 
+#   mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>% 
+#   arrange(desc(Final_roar)) %>% 
+#   mutate(Ranking = rank(Final_roar, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 5) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# round6 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar, Winner) %>% 
+#   mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>% 
+#   arrange(desc(Winner)) %>% 
+#   mutate(Ranking = rank(Winner, ties.method = "min")) %>% 
+#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Round = 6) %>% 
+#   select(Player_name, Ranking, Round)
+# 
+# rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
+
+rankall <- bind_rows(round1, round2)
+source(here::here("geom_bump.R"))
+library(cowplot)
+library(viridis)
+library(ggrepel)
+ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
+  geom_point(size = 7) +
+  #geom_text(data = rankall %>% filter(Round == min(Round)),
+           # aes(x = 0.5, label = Player_name), position=position_jitter(height=01),size = 4) +
+  geom_text_repel(data = rankall %>% filter(Round == max(Round)),
+            aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
+  geom_bump(aes(smooth = 8), size = 2) +
+  scale_x_continuous(limits = c(1, 7),
+                     breaks = seq(1, 6, 1)) +
+  theme_minimal_grid(font_size = 14, line_size = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank()) +
+  labs(y = "RANK",
+       x = "Round") +
+  scale_y_reverse(breaks = seq(1, 16,1))+
+  scale_color_manual(values = viridis(n = 16))
+```
+
+
+
+
+
+```{r eval= TRUE}
+knitr::kable(leaderboard)
+```
+
+
 ```{r, }
 #what is the most popular winner 
 
@@ -429,10 +587,6 @@ ggplot2::ggplot(data = outcomes) +
 ```
 
 
-
-```{r eval= TRUE}
-knitr::kable(leaderboard)
-```
 
 # 2019 MEP Leaderboard
 ```{r include=FALSE, eval = TRUE}

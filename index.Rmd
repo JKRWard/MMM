@@ -230,15 +230,15 @@ round2 <- select(df, Player_name,Round_1:Round_2) %>%
   mutate(Ranking = 17-Ranking) %>%
   mutate(Round = 2) %>%
   select(- Round_1, -Round_2)
-# 
-# round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>% 
-#   mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
-#   arrange(desc(Sweet_16)) %>% 
-#   mutate(Ranking = rank(Sweet_16, ties.method = "min")) %>% 
-#   mutate(Ranking = 17-Ranking) %>% 
-#   mutate(Round = 3) %>% 
-#   select(Player_name, Ranking, Round)
-# 
+
+round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>%
+  mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+  arrange(desc(Sweet_16)) %>%
+  mutate(Ranking = rank(Sweet_16, ties.method = "max")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 3) %>%
+  select(Player_name, Ranking, Round)
+
 # round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>% 
 #   mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
 #   arrange(desc(Elite_8)) %>% 
@@ -265,7 +265,7 @@ round2 <- select(df, Player_name,Round_1:Round_2) %>%
 # 
 # rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
 
-rankall <- bind_rows(round1, round2)
+rankall <- bind_rows(round1, round2, round3)
 source(here::here("geom_bump.R"))
 library(cowplot)
 library(viridis)
@@ -507,20 +507,20 @@ round2 <- select(df, Player_name,Round_1:Round_2) %>%
   mutate(Ranking = 13-Ranking) %>%
   mutate(Round = 2) %>%
   select(- Round_1, -Round_2)
-# 
-# round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>% 
-#   mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
-#   arrange(desc(Sweet_16)) %>% 
-#   mutate(Ranking = rank(Sweet_16, ties.method = "min")) %>% 
-#   mutate(Ranking = 17-Ranking) %>% 
-#   mutate(Round = 3) %>% 
-#   select(Player_name, Ranking, Round)
-# 
+
+round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>%
+  mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+  arrange(desc(Sweet_16)) %>%
+  mutate(Ranking = rank(Sweet_16, ties.method = "min")) %>%
+  mutate(Ranking = 13-Ranking) %>%
+  mutate(Round = 3) %>%
+  select(Player_name, Ranking, Round)
+
 # round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>% 
 #   mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
 #   arrange(desc(Elite_8)) %>% 
 #   mutate(Ranking = rank(Elite_8, ties.method = "min")) %>% 
-#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Ranking = 13-Ranking) %>% 
 #   mutate(Round = 4) %>% 
 #   select(Player_name, Ranking, Round)
 # 
@@ -528,7 +528,7 @@ round2 <- select(df, Player_name,Round_1:Round_2) %>%
 #   mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>% 
 #   arrange(desc(Final_roar)) %>% 
 #   mutate(Ranking = rank(Final_roar, ties.method = "min")) %>% 
-#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Ranking = 13-Ranking) %>% 
 #   mutate(Round = 5) %>% 
 #   select(Player_name, Ranking, Round)
 # 
@@ -536,13 +536,13 @@ round2 <- select(df, Player_name,Round_1:Round_2) %>%
 #   mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>% 
 #   arrange(desc(Winner)) %>% 
 #   mutate(Ranking = rank(Winner, ties.method = "min")) %>% 
-#   mutate(Ranking = 17-Ranking) %>% 
+#   mutate(Ranking = 13-Ranking) %>% 
 #   mutate(Round = 6) %>% 
 #   select(Player_name, Ranking, Round)
 # 
 # rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
 
-rankall <- bind_rows(round1, round2)
+rankall <- bind_rows(round1, round2,round3)
 source(here::here("geom_bump.R"))
 library(cowplot)
 library(viridis)

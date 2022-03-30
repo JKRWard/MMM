@@ -545,6 +545,22 @@ ggplot(rankallmep, aes(Round, Ranking, color = Player_name)) +
   scale_color_manual(values = viridis(n = nrow(leaderboard)))
 ```
 
+```{r eval= FALSE}
+ pl_dat <- leaderboard %>%mutate(r1= Round_1) %>%  mutate(r2 = Round_1+Round_2) %>% mutate(r3 = r2+Sweet_16) %>% 
+  mutate(r4=r3+Elite_8) %>% mutate(r5=r4 + Final_roar) %>% mutate(r6=Total) %>% select(Player_name, r1:r6)
+
+pl_dat$r0 <- 0
+pl_dat <- pl_dat %>% 
+  pivot_longer(cols = r1:r0,names_to = "round", values_to = "points")
+
+
+ggplot(data=pl_dat, aes(x=round, y=points, group = Player_name, colour = Player_name)) + 
+    geom_line() +
+  ggtitle("Point accumulation")
+
+# arrange legend 
+
+```
 
 # 2021
 

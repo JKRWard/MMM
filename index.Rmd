@@ -13,7 +13,550 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 Are you playing March Mammal Madness this year?? 
 
-Check out [#2022MMM](https://twitter.com/search?q=%232021MMM&src=typed_query) for all the latest tweets, check out the [play by play](http://mammalssuck.blogspot.com/2021/02/march-mammal-madness-2021.html) Or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
+Check out [#2023MMM](https://twitter.com/search?q=%232021MMM&src=typed_query) for all the latest tweets, check out the [play by play](http://mammalssuck.blogspot.com/2021/02/march-mammal-madness-2021.html) Or have a look at the [official website](https://libguides.asu.edu/MarchMammalMadness) for all of the latest updates.
+
+# 2023
+
+## 2023 Leaderboard
+
+```{r}
+library(tidyverse)
+library(here)
+library(plotly)
+library(readxl)
+
+
+fils <- list.files (path = "2023", pattern="*.csv") 
+
+# create a list in which to store entries
+fl <- list()
+
+#loop through files and add to the list
+#using here means that I can easily read files in a subdirectory
+for (k in 1:length(fils)){
+  entry <- read.csv(here("2023",fils[k]))
+  
+  fl[[k]] <- as.vector(entry[,1])
+}
+
+
+# format the data creating a single vector with all answers from each player
+# ans <- list()
+# for(j in 1:length(fl)){
+#   
+#   mast <- fl[[j]]
+#   wild <- mast %>%  select("...2") %>%drop_na() %>% rename(Wildcard = "...2")
+#   a <- select(mast, Round_1...5:Round_5...9) %>% rename(Round_1 = Round_1...5,
+#                                                         Round_2 = Round_2...6,
+#                                                         Round_3 = Round_3...7,
+#                                                         Round_4 = Round_4...8,
+#                                                         Round_5 = Round_5...9)
+#   b <- select(mast, Round_5...11:Round_1...15) %>% rename(Round_1 = Round_1...15,
+#                                                           Round_2 = Round_2...14, 
+#                                                           Round_3 = Round_3...13, 
+#                                                           Round_4 = Round_4...12, 
+#                                                           Round_5 = Round_5...11 )
+#   
+#   cc <- bind_rows(a,b)
+#   r1 <- cc %>% select(Round_1) %>% drop_na()
+#   r1 <- r1$Round_1
+#   
+#   r2 <- cc %>% select(Round_2) %>% drop_na()
+#   r2 <- r2$Round_2
+#   
+#   r3 <- cc %>% select(Round_3) %>% drop_na()
+#   r3 <- r3$Round_3
+#   
+#   r4 <- cc %>% select(Round_4) %>% drop_na()
+#   r4 <- r4$Round_4
+#   
+#   r5 <- cc %>% select(Round_5) %>% drop_na()
+#   r5 <- r5$Round_5
+#   
+#   wild <- wild$Wildcard
+#   
+#   fin <- mast %>% select(Final) %>% drop_na()
+#   fin <- fin$Final
+#   
+#   out <- c(wild,r1,r2,r3,r4,r5,fin)
+#   # store the vector in a list
+#   ans[[j]] <- out
+# }
+
+
+### counting points 
+
+######################## generating the answers 
+mast <- read_excel(here("2023_results.xlsx"))
+wild <- mast %>%  select("...2") %>%drop_na() %>% rename(Wildcard = "...2")
+a <- select(mast, Round_1...5:Round_5...9) %>% rename(Round_1 = Round_1...5,
+                                                      Round_2 = Round_2...6,
+                                                      Round_3 = Round_3...7,
+                                                      Round_4 = Round_4...8,
+                                                      Round_5 = Round_5...9)
+b <- select(mast, Round_5...11:Round_1...15) %>% rename(Round_1 = Round_1...15,
+                                                        Round_2 = Round_2...14, 
+                                                        Round_3 = Round_3...13, 
+                                                        Round_4 = Round_4...12, 
+                                                        Round_5 = Round_5...11 )
+cc <- bind_rows(a,b)
+r1 <- cc %>% select(Round_1) %>% drop_na()
+r1 <- r1$Round_1
+
+r2 <- cc %>% select(Round_2) %>% drop_na()
+r2 <- r2$Round_2
+
+r3 <- cc %>% select(Round_3) %>% drop_na()
+r3 <- r3$Round_3
+
+r4 <- cc %>% select(Round_4) %>% drop_na()
+r4 <- r4$Round_4
+
+r5 <- cc %>% select(Round_5) %>% drop_na()
+r5 <- r5$Round_5
+
+wild <- wild$Wildcard
+
+fin <- mast %>% select(Final) %>% drop_na()
+fin <- fin$Final
+
+master <- c(wild,r1,r2,r3,r4,r5,fin)
+
+# 1 = same 0 = different -- ony get points for answers that are the same as the master
+
+
+# check where in the list the master file is 
+#ans
+
+
+# create a list of players names
+
+players <- sub("_", " ", fils) %>% sub(".csv", "",.)
+#players <- sub(".csv", "", players)
+
+### check answers 
+
+scorelist <- list()
+for (i in 1: length(players)){
+  
+  ## this checks answers for each round 
+  playa <- fl[[i]]
+  mstr <- master
+  #mstr <- ans[[1]]
+  rnd1 <- playa[1:33] == mstr[1:33]
+  rnd2 <- playa[34:49] == mstr[34:49]
+  sweet <- playa[50:57]==mstr[50:57]
+  elite <- playa[58:61]==mstr[58:61]
+  roar <- playa[62:63]==mstr[62:63]
+  win <- playa[64]==mstr[64]
+  
+  
+  pts <- c(sum(rnd1),sum(rnd2*2), sum(sweet*3), sum(elite*5), sum(roar*8),sum(win*13))
+  scorelist[[i]] <- pts
+}
+
+leaderboard <- as.data.frame(do.call(rbind, scorelist))
+colnames(leaderboard) <- c("Round_1", "Round_2", "Sweet_16", "Elite_8", "Final_roar", "Winner")
+#tardy <- c(1,0,0,0,0,0,1,0,0,1,1,1,0)
+
+
+leaderboard$Player_name <- players
+#leaderboard$Tardigrade_tally <- tardy
+
+
+
+leaderboard <- leaderboard %>% 
+  select(Player_name,  Round_1, Round_2, Sweet_16, Elite_8, 
+         Final_roar, Winner) %>% 
+  mutate(Total= rowSums(.[2:7])) %>%
+  arrange(desc(Total))
+
+# creating a plot with cumulative points 
+#create sum column for after each round 
+pl_dat <- leaderboard %>% mutate(r2 = Round_1+Round_2) %>% mutate(r3 = r2+Sweet_16)
+
+pl_dat <- leaderboard %>% 
+  mutate(r1 =rowSums(.[2:3])) %>% 
+  mutate(r2 =rowSums(.[2:4])) %>% 
+  mutate(r3 =rowSums(.[2:5])) %>%
+  mutate(r4 =rowSums(.[2:6])) %>% 
+  mutate(r5 =rowSums(.[2:7])) %>% 
+  rename(r6 = Total) %>%
+  select(Player_name, r1, r2, r3, r4, r5, r6) %>% 
+  gather("Round", "points", 2:7)
+
+pl_dat$Round <- gsub("r","",pl_dat$Round)
+
+p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Player_name)) + 
+  geom_line() +
+  ggtitle("Point accumulation")
+#+ scale_colour_manual(values=cols) 
+  
+# working out the most popular winner
+winners <- vector(length = length(players))
+
+for (i in 1:length(winners)){
+
+  this_one <- fl[[i]]
+  winners[i] <- this_one[64]
+  
+}
+
+
+
+
+outcomes <- data.frame(players, winners)
+# creating line breaks for plotting 
+levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
+
+outcomes <- separate(outcomes, players, into = c("players", "group"), sep = "_(?=[^_]+$)")
+```
+
+```{r}
+#leaderboard$Player_name <- str_replace(leaderboard$Player_name,"MMM", " MEP")
+# create list of MEP, BIO2029 players
+leaderboardall <- separate(leaderboard, Player_name, into = c("Player_name", "group"), sep = "_(?=[^_]+$)")
+leaderboard$Player_name <- str_replace(leaderboard$Player_name,"MEP", "")
+leaderboard$Player_name <- str_replace(leaderboard$Player_name,"_", "")
+leaderboard$Player_name <- str_replace(leaderboard$Player_name,"BIO2041", "")
+leaderboard %>% arrange(-Total) %>% 
+knitr::kable()
+```
+
+```{r 2023winners}
+library(viridis)
+
+outcomes$winners <- as.character(outcomes$winners)
+predicted_winners <- outcomes %>% select(winners) %>% group_by(winners) %>% count() %>% rename("num"= "n") %>% arrange(-num) %>% ungroup()
+
+
+ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)) + 
+  geom_bar( stat = "identity", aes(fill = winners))+
+   scale_fill_manual(values = viridis(n = nrow(predicted_winners)))+
+  ggtitle("Predicted winners")+
+  theme_classic()+
+  coord_flip()+
+ theme(legend.position = "none")+
+  labs(x = "")
+
+
+```
+
+
+```{r, 2023bumpall, eval = FALSE}
+df <- leaderboard
+round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
+  mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
+  mutate(Ranking = 17-Ranking) %>% 
+  mutate(Round = 1) %>% 
+  select(-Round_1)
+
+round2 <- select(df, Player_name,Round_1:Round_2) %>%
+  mutate(Round_2 = Round_1 + Round_2) %>%
+  arrange(desc(Round_2)) %>%
+  mutate(Ranking = rank(Round_2, ties.method = "max")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 2) %>%
+  select(- Round_1, -Round_2)
+
+round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>%
+  mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+  arrange(desc(Sweet_16)) %>%
+  mutate(Ranking = rank(Sweet_16, ties.method = "max")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 3) %>%
+  select(Player_name, Ranking, Round)
+
+round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>%
+  mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
+  arrange(desc(Elite_8)) %>%
+  mutate(Ranking = rank(Elite_8, ties.method = "min")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 4) %>%
+  select(Player_name, Ranking, Round)
+
+round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar) %>%
+  mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>%
+  arrange(desc(Final_roar)) %>%
+  mutate(Ranking = rank(Final_roar, ties.method = "min")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 5) %>%
+  select(Player_name, Ranking, Round)
+# 
+round6 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar, Winner) %>%
+  mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>%
+  arrange(desc(Winner)) %>%
+  mutate(Ranking = rank(Winner, ties.method = "min")) %>%
+  mutate(Ranking = 17-Ranking) %>%
+  mutate(Round = 6) %>%
+  select(Player_name, Ranking, Round)
+
+# rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
+
+rankall <- bind_rows(round1, round2, round3,round4,round5,round6)
+source(here::here("geom_bump.R"))
+library(cowplot)
+library(viridis)
+library(ggrepel)
+ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
+  geom_point(size = 7) +
+  #geom_text(data = rankall %>% filter(Round == min(Round)),
+           # aes(x = 0.5, label = Player_name), position=position_jitter(height=01),size = 4) +
+  geom_text_repel(data = rankall %>% filter(Round == max(Round)),
+            aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
+  geom_bump(aes(smooth = 8), size = 2) +
+  scale_x_continuous(limits = c(1, 7),
+                     breaks = seq(1, 6, 1)) +
+  theme_minimal_grid(font_size = 14, line_size = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank()) +
+  labs(y = "RANK",
+       x = "Round") +
+  scale_y_reverse(breaks = seq(1, nrow(leaderboard),1))+
+  scale_color_manual(values = viridis(n = nrow(leaderboard)))
+```
+
+
+## BIO2041 Vertebrate Biology Leaderboard
+```{r}
+leaderboard2029 <- filter(leaderboardall, group == "BIO2041")
+ Aileen <- filter(leaderboardall, Player_name== "Aileen Mill")
+ Mark <- filter(leaderboardall, Player_name== "Mark Shirley")
+Richard <- filter(leaderboardall, Player_name== "Richard Bevan")
+# add relevant staff members 
+leaderboard2041 <- bind_rows(leaderboard2041,Richard,Aileen, Mark ) %>% select(-group)
+leaderboard2041$Player_name <- str_replace(leaderboard2041$Player_name,"BIO2041", "")
+leaderboard2041 %>% arrange(-Total) %>% 
+knitr::kable()
+```
+
+
+```{r 2023winners2041}
+library(viridis)
+
+outcomes$winners <- as.character(outcomes$winners)
+staff <- outcomes %>% filter(players=="Aileen Mill"|players=="Mark Shirley"| players=="Richard Bevan")
+
+predicted_winners <- outcomes %>% filter(group == "BIO2041") %>% 
+  bind_rows(., staff) %>% 
+  select(winners) %>%
+  group_by(winners) %>% 
+  count() %>% 
+  rename("num"= "n") %>% 
+  arrange(-num) %>% 
+  ungroup()
+
+
+ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)) + 
+  geom_bar( stat = "identity", aes(fill = winners))+
+   scale_fill_manual(values = viridis(n = nrow(predicted_winners)))+
+  ggtitle("Predicted winners")+
+  theme_classic()+
+  coord_flip()+
+ theme(legend.position = "none")+
+  labs(x = "")
+
+
+```
+
+```{r, eval = FALSE}
+df <- leaderboard2041
+round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
+  mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
+  mutate(Ranking = 15-Ranking) %>% 
+  mutate(Round = 1) %>% 
+  select(-Round_1)
+
+round2 <- select(df, Player_name,Round_1:Round_2) %>%
+  mutate(Round_2 = Round_1 + Round_2) %>%
+  arrange(desc(Round_2)) %>%
+  mutate(Ranking = rank(Round_2, ties.method = "max")) %>%
+  mutate(Ranking = 15-Ranking) %>%
+  mutate(Round = 2) %>%
+  select(- Round_1, -Round_2)
+
+round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>%
+  mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+  arrange(desc(Sweet_16)) %>%
+  mutate(Ranking = rank(Sweet_16, ties.method = "max")) %>%
+  mutate(Ranking = 15-Ranking) %>%
+  mutate(Round = 3) %>%
+  select(Player_name, Ranking, Round)
+
+round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>%
+  mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
+  arrange(desc(Elite_8)) %>%
+  mutate(Ranking = rank(Elite_8, ties.method = "min")) %>%
+  mutate(Ranking = 15-Ranking) %>%
+  mutate(Round = 4) %>%
+  select(Player_name, Ranking, Round)
+
+round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar) %>%
+  mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>%
+  arrange(desc(Final_roar)) %>%
+  mutate(Ranking = rank(Final_roar, ties.method = "min")) %>%
+  mutate(Ranking = 15-Ranking) %>%
+  mutate(Round = 5) %>%
+  select(Player_name, Ranking, Round)
+# 
+round6 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar, Winner) %>%
+  mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>%
+  arrange(desc(Winner)) %>%
+  mutate(Ranking = rank(Winner, ties.method = "min")) %>%
+  mutate(Ranking = 15-Ranking) %>%
+  mutate(Round = 6) %>%
+  select(Player_name, Ranking, Round)
+
+# rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
+
+rankall2041 <- bind_rows(round1, round2, round3,round4,round5,round6)
+source(here::here("geom_bump.R"))
+library(cowplot)
+library(viridis)
+library(ggrepel)
+ggplot(rankall2029, aes(Round, Ranking, color = Player_name)) +
+  geom_point(size = 7) +
+  #geom_text(data = rankall %>% filter(Round == min(Round)),
+           # aes(x = 0.5, label = Player_name), position=position_jitter(height=01),size = 4) +
+  geom_text_repel(data = rankall2029 %>% filter(Round == max(Round)),
+            aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
+  geom_bump(aes(smooth = 8), size = 2) +
+  scale_x_continuous(limits = c(1, 7),
+                     breaks = seq(1, 6, 1)) +
+  theme_minimal_grid(font_size = 14, line_size = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank()) +
+  labs(y = "RANK",
+       x = "Round") +
+  scale_y_reverse(breaks = seq(1, nrow(leaderboard2029),1))+
+  scale_color_manual(values = viridis(n = nrow(leaderboard2029)))
+```
+
+## MEP Leaderboard
+```{r}
+leaderboard <- filter(leaderboardall, is.na(group))
+#leaderboard$Player_name <- str_replace(leaderboard$Player_name,"MEP", "")
+leaderboard %>% arrange(-Total) %>% 
+  select(-group) %>% 
+knitr::kable()
+```
+
+```{r 2023winnersMEP}
+library(viridis)
+
+outcomes$winners <- as.character(outcomes$winners)
+#outcomes$group <- str_replace(outcomes$group, "MMM", "MEP")
+predicted_winners <- outcomes %>% filter(is.na(group)) %>% 
+  select(winners) %>%
+  group_by(winners) %>% 
+  count() %>% 
+  rename("num"= "n") %>% 
+  arrange(-num) %>% 
+  ungroup()
+
+
+ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)) + 
+  geom_bar( stat = "identity", aes(fill = winners))+
+   scale_fill_manual(values = viridis(n = nrow(predicted_winners)))+
+  ggtitle("Predicted winners")+
+  theme_classic()+
+  coord_flip()+
+ theme(legend.position = "none")+
+  labs(x = "")
+
+
+```
+
+
+```{r, eval= FALSE}
+df <- leaderboard
+round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
+  mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
+  mutate(Ranking = 16-Ranking) %>% 
+  mutate(Round = 1) %>% 
+  select(-Round_1)
+
+round2 <- select(df, Player_name,Round_1:Round_2) %>%
+  mutate(Round_2 = Round_1 + Round_2) %>%
+  arrange(desc(Round_2)) %>%
+  mutate(Ranking = rank(Round_2, ties.method = "max")) %>%
+  mutate(Ranking = 16-Ranking) %>%
+  mutate(Round = 2) %>%
+  select(- Round_1, -Round_2)
+
+round3 <- select(df, Player_name, Round_1, Round_2,Sweet_16) %>%
+  mutate(Sweet_16 = Round_1 + Round_2 + Sweet_16) %>%
+  arrange(desc(Sweet_16)) %>%
+  mutate(Ranking = rank(Sweet_16, ties.method = "max")) %>%
+  mutate(Ranking = 16-Ranking) %>%
+  mutate(Round = 3) %>%
+  select(Player_name, Ranking, Round)
+
+round4 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8) %>%
+  mutate(Elite_8 = Round_1 + Round_2 + Sweet_16 + Elite_8) %>%
+  arrange(desc(Elite_8)) %>%
+  mutate(Ranking = rank(Elite_8, ties.method = "min")) %>%
+  mutate(Ranking = 16-Ranking) %>%
+  mutate(Round = 4) %>%
+  select(Player_name, Ranking, Round)
+
+round5 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar) %>%
+  mutate(Final_roar = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar) %>%
+  arrange(desc(Final_roar)) %>%
+  mutate(Ranking = rank(Final_roar, ties.method = "min")) %>%
+  mutate(Ranking = 16-Ranking) %>%
+  mutate(Round = 5) %>%
+  select(Player_name, Ranking, Round)
+# 
+round6 <- select(df, Player_name, Round_1, Round_2, Sweet_16,Elite_8, Final_roar, Winner) %>%
+  mutate(Winner = Round_1 + Round_2 + Sweet_16 + Elite_8 + Final_roar+ Winner) %>%
+  arrange(desc(Winner)) %>%
+  mutate(Ranking = rank(Winner, ties.method = "min")) %>%
+  mutate(Ranking = 16-Ranking) %>%
+  mutate(Round = 6) %>%
+  select(Player_name, Ranking, Round)
+
+# rankall <- bind_rows(round1,round2,round3,round4,round5, round6)
+
+rankallmep<- bind_rows(round1, round2, round3,round4,round5,round6)
+source(here::here("geom_bump.R"))
+library(cowplot)
+library(viridis)
+library(ggrepel)
+ggplot(rankallmep, aes(Round, Ranking, color = Player_name)) +
+  geom_point(size = 7) +
+  #geom_text(data = rankall %>% filter(Round == min(Round)),
+           # aes(x = 0.5, label = Player_name), position=position_jitter(height=01),size = 4) +
+  geom_text_repel(data = rankallmep %>% filter(Round == max(Round)),
+            aes(x = Round, label = Player_name),size = 4, hjust = -0.5) +
+  geom_bump(aes(smooth = 8), size = 2) +
+  scale_x_continuous(limits = c(1, 7),
+                     breaks = seq(1, 6, 1)) +
+  theme_minimal_grid(font_size = 14, line_size = 0) +
+  theme(legend.position = "none",
+        panel.grid.major = element_blank()) +
+  labs(y = "RANK",
+       x = "Round") +
+  scale_y_reverse(breaks = seq(1, nrow(leaderboard),1))+
+  scale_color_manual(values = viridis(n = nrow(leaderboard)))
+```
+
+```{r eval= FALSE}
+ pl_dat <- leaderboard %>%mutate(r1= Round_1) %>%  mutate(r2 = Round_1+Round_2) %>% mutate(r3 = r2+Sweet_16) %>% 
+  mutate(r4=r3+Elite_8) %>% mutate(r5=r4 + Final_roar) %>% mutate(r6=Total) %>% select(Player_name, r1:r6)
+
+pl_dat$r0 <- 0
+pl_dat <- pl_dat %>% 
+  pivot_longer(cols = r1:r0,names_to = "round", values_to = "points")
+
+
+ggplot(data=pl_dat, aes(x=round, y=points, group = Player_name, colour = Player_name)) + 
+    geom_line() +
+  ggtitle("Point accumulation")
+
+# arrange legend 
+
+```
 
 # 2022
 

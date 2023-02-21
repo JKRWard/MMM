@@ -33,55 +33,11 @@ fl <- list()
 
 #loop through files and add to the list
 #using here means that I can easily read files in a subdirectory
-for (k in 1:length(fils)){
-  entry <- read.csv(here("2023",fils[k]))
+for (kk in 1:length(fils)){
+  entry <- read.csv(here("2023",fils[kk]))
   
-  fl[[k]] <- as.vector(entry[,1])
+  fl[[kk]] <- as.vector(entry[,1])
 }
-
-
-# format the data creating a single vector with all answers from each player
-# ans <- list()
-# for(j in 1:length(fl)){
-#   
-#   mast <- fl[[j]]
-#   wild <- mast %>%  select("...2") %>%drop_na() %>% rename(Wildcard = "...2")
-#   a <- select(mast, Round_1...5:Round_5...9) %>% rename(Round_1 = Round_1...5,
-#                                                         Round_2 = Round_2...6,
-#                                                         Round_3 = Round_3...7,
-#                                                         Round_4 = Round_4...8,
-#                                                         Round_5 = Round_5...9)
-#   b <- select(mast, Round_5...11:Round_1...15) %>% rename(Round_1 = Round_1...15,
-#                                                           Round_2 = Round_2...14, 
-#                                                           Round_3 = Round_3...13, 
-#                                                           Round_4 = Round_4...12, 
-#                                                           Round_5 = Round_5...11 )
-#   
-#   cc <- bind_rows(a,b)
-#   r1 <- cc %>% select(Round_1) %>% drop_na()
-#   r1 <- r1$Round_1
-#   
-#   r2 <- cc %>% select(Round_2) %>% drop_na()
-#   r2 <- r2$Round_2
-#   
-#   r3 <- cc %>% select(Round_3) %>% drop_na()
-#   r3 <- r3$Round_3
-#   
-#   r4 <- cc %>% select(Round_4) %>% drop_na()
-#   r4 <- r4$Round_4
-#   
-#   r5 <- cc %>% select(Round_5) %>% drop_na()
-#   r5 <- r5$Round_5
-#   
-#   wild <- wild$Wildcard
-#   
-#   fin <- mast %>% select(Final) %>% drop_na()
-#   fin <- fin$Final
-#   
-#   out <- c(wild,r1,r2,r3,r4,r5,fin)
-#   # store the vector in a list
-#   ans[[j]] <- out
-# }
 
 
 ### counting points 
@@ -137,10 +93,10 @@ players <- sub("_", " ", fils) %>% sub(".csv", "",.)
 ### check answers 
 
 scorelist <- list()
-for (i in 1: length(players)){
+for (ii in 1: length(players)){
   
   ## this checks answers for each round 
-  playa <- fl[[i]]
+  playa <- fl[[ii]]
   mstr <- master
   #mstr <- ans[[1]]
   rnd1 <- playa[1:33] == mstr[1:33]
@@ -152,7 +108,7 @@ for (i in 1: length(players)){
   
   
   pts <- c(sum(rnd1),sum(rnd2*2), sum(sweet*3), sum(elite*5), sum(roar*8),sum(win*13))
-  scorelist[[i]] <- pts
+  scorelist[[ii]] <- pts
 }
 
 leaderboard <- as.data.frame(do.call(rbind, scorelist))
@@ -176,11 +132,11 @@ leaderboard <- leaderboard %>%
 pl_dat <- leaderboard %>% mutate(r2 = Round_1+Round_2) %>% mutate(r3 = r2+Sweet_16)
 
 pl_dat <- leaderboard %>% 
-  mutate(r1 =rowSums(.[2:3])) %>% 
-  mutate(r2 =rowSums(.[2:4])) %>% 
-  mutate(r3 =rowSums(.[2:5])) %>%
-  mutate(r4 =rowSums(.[2:6])) %>% 
-  mutate(r5 =rowSums(.[2:7])) %>% 
+  mutate(r1 =rowSums(.[2])) %>% 
+  mutate(r2 =rowSums(.[2:3])) %>% 
+  mutate(r3 =rowSums(.[2:4])) %>%
+  mutate(r4 =rowSums(.[2:5])) %>% 
+  mutate(r5 =rowSums(.[2:6])) %>% 
   rename(r6 = Total) %>%
   select(Player_name, r1, r2, r3, r4, r5, r6) %>% 
   gather("Round", "points", 2:7)
@@ -188,21 +144,19 @@ pl_dat <- leaderboard %>%
 pl_dat$Round <- gsub("r","",pl_dat$Round)
 
 p <- ggplot(data=pl_dat, aes(x=Round, y=points, group = Player_name, colour = Player_name)) + 
-  geom_line() +
+  geom_point() +
   ggtitle("Point accumulation")
 #+ scale_colour_manual(values=cols) 
   
 # working out the most popular winner
 winners <- vector(length = length(players))
 
-for (i in 1:length(winners)){
+for (ii in 1:length(winners)){
 
-  this_one <- fl[[i]]
-  winners[i] <- this_one[64]
+  this_one <- fl[[ii]]
+  winners[ii] <- this_one[64]
   
 }
-
-
 
 
 outcomes <- data.frame(players, winners)
@@ -319,9 +273,9 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
 
 ## BIO2041 Vertebrate Biology Leaderboard
 ```{r}
-leaderboard2029 <- filter(leaderboardall, group == "BIO2041")
- Aileen <- filter(leaderboardall, Player_name== "Aileen Mill")
- Mark <- filter(leaderboardall, Player_name== "Mark Shirley")
+leaderboard2041 <- filter(leaderboardall, group == "BIO2041")
+Aileen <- filter(leaderboardall, Player_name== "Aileen Mill")
+Mark <- filter(leaderboardall, Player_name== "Mark Shirley")
 Richard <- filter(leaderboardall, Player_name== "Richard Bevan")
 # add relevant staff members 
 leaderboard2041 <- bind_rows(leaderboard2041,Richard,Aileen, Mark ) %>% select(-group)

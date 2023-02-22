@@ -67,9 +67,14 @@ ui <- fluidPage(
         over into the next round- just like an injury of a star player totally changes a basketball team's outcome. Also hiding or running away counts as a forfeit.", 
           style = "font-size:16px"),
         br(),
-        p("In the early rounds the battle location is in the preferred habitat of the better-ranked combatant in the battle (ranking are the numbers displayed next to the animals), 
-        and ecology can play a huge role in what happens. Once to the Elite Trait, the battle location is random among 4 ecologies for the remaining battles. 
-          The location is announced right before the battle.", style = "font-size:16px"),
+        p("In the early rounds the battle location is in the preferred habitat of the better-ranked combatant (can be any habitat not just one of the four random ones) in the battle 
+        (ranking are the numbers displayed next to the animals), and ecology can play a huge role in what happens. Once to the Elite Trait, the battle location is random among 4 
+        ecologies for the remaining battles. The location is announced right before the battle.", style = "font-size:16px"),
+          p("This years four random habitats are:", style = "font-size:16px"),
+          p("        - Tropical Rainforest", style = "font-size:16px"),
+          p("        - Subtropical Desert", style = "font-size:16px"),
+          p("        - Ephemeral Wetland", style = "font-size:16px"),
+          p("        - Ghost Forest", style = "font-size:16px"),
         br(),
         p("Participants fill out their brackets with their choices for the winners for each bout. Scoring occurs at the end of the tournament, points allocated as follows:", 
           style = "font-size:16px"),

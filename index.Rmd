@@ -274,11 +274,11 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
 ## BIO2041 Vertebrate Biology Leaderboard
 ```{r}
 leaderboard2041 <- filter(leaderboardall, group == "BIO2041")
-Aileen <- filter(leaderboardall, Player_name== "Aileen Mill")
+Ben <- filter(leaderboardall, Player_name== "Ben Rowland")
 Mark <- filter(leaderboardall, Player_name== "Mark Shirley")
 Richard <- filter(leaderboardall, Player_name== "Richard Bevan")
 # add relevant staff members 
-leaderboard2041 <- bind_rows(leaderboard2041,Richard,Aileen, Mark ) %>% select(-group)
+leaderboard2041 <- bind_rows(leaderboard2041,Richard,Ben, Mark ) %>% select(-group)
 leaderboard2041$Player_name <- str_replace(leaderboard2041$Player_name,"BIO2041", "")
 leaderboard2041 %>% arrange(-Total) %>% 
 knitr::kable()
@@ -289,7 +289,7 @@ knitr::kable()
 library(viridis)
 
 outcomes$winners <- as.character(outcomes$winners)
-staff <- outcomes %>% filter(players=="Aileen Mill"|players=="Mark Shirley"| players=="Richard Bevan")
+staff <- outcomes %>% filter(players=="Ben Rowland"|players=="Mark Shirley"| players=="Richard Bevan")
 
 predicted_winners <- outcomes %>% filter(group == "BIO2041") %>% 
   bind_rows(., staff) %>% 

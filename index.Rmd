@@ -107,7 +107,7 @@ for (ii in 1: length(players)){
   win <- playa[64]==mstr[64]
   
   
-  pts <- c(sum(rnd1),sum(rnd2*2), sum(sweet*3), sum(elite*5), sum(roar*8),sum(win*13))
+  pts <- c(sum(rnd1, na.rm = TRUE),sum(rnd2*2, na.rm = TRUE), sum(sweet*3, na.rm = TRUE), sum(elite*5, na.rm = TRUE), sum(roar*8, na.rm = TRUE),sum(win*13, na.rm = TRUE))
   scorelist[[ii]] <- pts
 }
 

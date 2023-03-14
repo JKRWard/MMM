@@ -1060,11 +1060,11 @@ ggplot(data=pl_dat, aes(x=round, y=points, group = Player_name, colour = Player_
 
 # 2021
 
-<img src = "https://libapps.s3.amazonaws.com/accounts/46633/images/March_Mammal_Madness_2021_Bracket_v1_2_English.png" class = "center">
+<!-- <img src = "https://libapps.s3.amazonaws.com/accounts/46633/images/March_Mammal_Madness_2021_Bracket_v1_2_English.png" class = "center"> -->
 
 ## 2021 Leaderboard
 
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 library(here)
 library(plotly)
@@ -1255,7 +1255,7 @@ levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 outcomes <- separate(outcomes, players, into = c("players", "group"), sep = " ")
 ```
 
-```{r}
+```{r, eval=FALSE}
 leaderboard$Player_name <- str_replace(leaderboard$Player_name,"MMM", " MEP")
 # create list of MEP, BIO2029 and BIO3036 players
 leaderboardall <- separate(leaderboard, Player_name, into = c("Player_name", "group"), sep = " ")
@@ -1340,7 +1340,7 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
 ```
 
 
-```{r 2021winners}
+```{r 2021winners, eval=FALSE}
 library(viridis)
 
 outcomes$winners <- as.character(outcomes$winners)
@@ -1362,7 +1362,7 @@ ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)
 
 
 ## BIO2029 Vertebrate Biology Leaderboard
-```{r}
+```{r, eval=FALSE}
 leaderboard2029 <- filter(leaderboardall, group == "BIO2029")
 Aileen <- filter(leaderboardall, Player_name== "AileenMill")
 leaderboard2029 <- bind_rows(leaderboard2029,Aileen) %>% select(-group)
@@ -1372,7 +1372,7 @@ knitr::kable()
 ```
  
 
-```{r 2021winners2029}
+```{r 2021winners2029, eval=FALSE}
 library(viridis)
 
 outcomes$winners <- as.character(outcomes$winners)
@@ -1397,7 +1397,7 @@ ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 df <- leaderboard2029
 round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
   mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
@@ -1474,7 +1474,7 @@ ggplot(rankall2029, aes(Round, Ranking, color = Player_name)) +
 <!-- - bump diagram  -->
 ## BIO3036 Mammal Surveying Leaderboard
 
-```{r}
+```{r, eval=FALSE}
 leaderboard3036 <- filter(leaderboardall, group == "BIO3036") 
 
 #select(-group)
@@ -1485,7 +1485,7 @@ leaderboard3036 %>% arrange(-Total) %>%
 knitr::kable()
 ```
 
-```{r 2021winners3036}
+```{r 2021winners3036, eval=FALSE}
 library(viridis)
 
 outcomes$winners <- as.character(outcomes$winners)
@@ -1510,7 +1510,7 @@ ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)
 
 ```
 
-```{r}
+```{r, eval=FALSE}
 df <- leaderboard3036
 round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
   mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
@@ -1585,14 +1585,14 @@ ggplot(rankall3036, aes(Round, Ranking, color = Player_name)) +
 
 
 ## MEP Leaderboard
-```{r}
+```{r, eval=FALSE}
 leaderboard <- filter(leaderboardall, group == "MEP"| group =="")
 leaderboard$Player_name <- str_replace(leaderboard$Player_name,"MEP", "")
 leaderboard %>% arrange(-Total) %>% 
 knitr::kable()
 ```
 
-```{r 2021winnersMEP}
+```{r 2021winnersMEP, eval=FALSE}
 library(viridis)
 
 outcomes$winners <- as.character(outcomes$winners)
@@ -1619,7 +1619,7 @@ ggplot2::ggplot(data = predicted_winners, aes(x = reorder(winners,num), y = num)
 ```
 
 
-```{r}
+```{r, eval=FALSE}
 df <- leaderboard
 round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
   mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
@@ -1694,10 +1694,10 @@ ggplot(rankallmep, aes(Round, Ranking, color = Player_name)) +
 
 # 2020 
 
-<img src= "https://1.bp.blogspot.com/-I1rQLndyvd8/Xlji_FnnCNI/AAAAAAAAMus/0DfvLvTwEU0zRtG5KrAYdcWubh77nx6kQCNcBGAsYHQ/s640/Mammal%2BMarch%2BMadness%2B2020%2BBracket%2Bv1_0_English.png" class= "center">
+<!-- <img src= "https://1.bp.blogspot.com/-I1rQLndyvd8/Xlji_FnnCNI/AAAAAAAAMus/0DfvLvTwEU0zRtG5KrAYdcWubh77nx6kQCNcBGAsYHQ/s640/Mammal%2BMarch%2BMadness%2B2020%2BBracket%2Bv1_0_English.png" class= "center"> -->
 ## MEP Leaderboard
 
-```{r 2020mep}
+```{r 2020mep, eval=FALSE}
 library(tidyverse)
 library(here)
 library(plotly)
@@ -1887,11 +1887,11 @@ levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 
 
 
-```{r eval= TRUE}
+```{r eval=FALSE}
 knitr::kable(leaderboard)
 ```
 
-```{r}
+```{r eval=FALSE}
 df <- leaderboard
 round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
   mutate(Ranking = rank(Round_1, ties.method = "max")) %>% 
@@ -1964,7 +1964,7 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
   scale_color_manual(values = viridis(n = 16))
 ```
 
-```{r, }
+```{r, eval=FALSE}
 #what is the most popular winner 
 
 ggplot2::ggplot(data = outcomes) + 
@@ -1979,7 +1979,7 @@ ggplot2::ggplot(data = outcomes) +
 
 
 ## 2020 BIO2029 Leaderboard
-```{r 2020bio2029}
+```{r 2020bio2029, eval=FALSE}
 library(tidyverse)
 library(here)
 library(plotly)
@@ -2169,7 +2169,7 @@ levels(outcomes$winners) <- gsub(" ", "\n",levels(outcomes$winners))
 ```
 
 
-```{r}
+```{r eval=FALSE}
 df <- leaderboard
 round1 <- select(df, Player_name, Round_1) %>% arrange(desc(Round_1)) %>% 
   mutate(Ranking = rank(Round_1, ties.method = "min")) %>% 
@@ -2246,12 +2246,12 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
 
 
 
-```{r eval= TRUE}
+```{r eval=FALSE}
 knitr::kable(leaderboard)
 ```
 
 
-```{r, }
+```{r, eval=FALSE}
 #what is the most popular winner 
 
 ggplot2::ggplot(data = outcomes) + 

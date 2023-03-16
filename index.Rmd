@@ -99,12 +99,12 @@ for (ii in 1: length(players)){
   playa <- fl[[ii]]
   mstr <- master
   #mstr <- ans[[1]]
-  rnd1 <- playa[1:33] %in% mstr[1:33]
-  rnd2 <- playa[34:49] %in% mstr[34:49]
-  sweet <- playa[50:57] %in% mstr[50:57]
-  elite <- playa[58:61] %in% mstr[58:61]
-  roar <- playa[62:63] %in% mstr[62:63]
-  win <- playa[64] %in% mstr[64]
+  rnd1 <- unique(playa[1:33]) %in% mstr[1:33]
+  rnd2 <- unique(playa[34:49]) %in% mstr[34:49]
+  sweet <- unique(playa[50:57]) %in% mstr[50:57]
+  elite <- unique(playa[58:61]) %in% mstr[58:61]
+  roar <- unique(playa[62:63]) %in% mstr[62:63]
+  win <- unique(playa[64]) %in% mstr[64]
   
   
   pts <- c(sum(rnd1, na.rm = TRUE),sum(rnd2*2, na.rm = TRUE), sum(sweet*3, na.rm = TRUE), sum(elite*5, na.rm = TRUE), sum(roar*8, na.rm = TRUE),sum(win*13, na.rm = TRUE))

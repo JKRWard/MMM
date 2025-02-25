@@ -5,7 +5,7 @@ account: naturalandenvironmentalscience
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 11310885
-bundleId: 9835376
+bundleId: 9846274
 url: https://naturalandenvironmentalscience.shinyapps.io/MMM_App/
 version: 1
 asMultiple: FALSE

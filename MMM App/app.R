@@ -7,7 +7,7 @@ ui <- fluidPage(
   #Main panel with tables for background, wildcard, H1, H2, championship + preview + download (wildcard position varies depending on the bracket)
   mainPanel( width = 12,
              p("Instructions", style = "font-size:40px"),
-             tags$a(href="https://libguides.asu.edu/marchmammalmadness", "Link to the March Mammal Madness Wedsite", style = "font-size:16px", target = "_blank"),
+             tags$a(href="https://libguides.asu.edu/marchmammalmadness", "Link to the March Mammal Madness Website", style = "font-size:16px", target = "_blank"),
              br(),
              br(),
              fluidRow(
@@ -73,7 +73,7 @@ ui <- fluidPage(
                                   p("        - Sea Cave", style = "font-size:16px"),
                                   p("        - Geothermal Wetlands", style = "font-size:16px"),
                                   p("        - Sky Islands", style = "font-size:16px"),
-                                  p("        - Temerate Broadleaf Forest", style = "font-size:16px"),
+                                  p("        - Temperate Broadleaf Forest", style = "font-size:16px"),
                                   br(),
                                   p("Participants fill out their brackets with their choices for the winners for each bout. Scoring occurs at the end of the tournament, points allocated as follows:", 
                                     style = "font-size:16px"),

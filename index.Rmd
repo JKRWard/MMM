@@ -274,10 +274,10 @@ ggplot(rankall, aes(Round, Ranking, color = Player_name)) +
 leaderboard2314 <- filter(leaderboardall, group == "NES2314")
 Ben <- filter(leaderboardall, Player_name== "Ben Rowland")
 Mark <- filter(leaderboardall, Player_name== "Mark Shirley")
-Jess <- filter(leaderboardall, Player_name== "Jess Ward")
-Simon <- filter(leaderboardall, Player_name== "Simon Maddock")
+#Jess <- filter(leaderboardall, Player_name== "Jess Ward")
+#Simon <- filter(leaderboardall, Player_name== "Simon Maddock")
 # add relevant staff members 
-leaderboard2314 <- bind_rows(leaderboard2041,Jess,Ben, Mark ) %>% select(-group)
+leaderboard2314 <- bind_rows(leaderboard2314,Ben, Mark ) %>% select(-group)
 leaderboard2314$Player_name <- str_replace(leaderboard2314$Player_name,"NES2314", "")
 leaderboard2314 %>% arrange(-Total) %>% 
 knitr::kable()

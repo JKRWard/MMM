@@ -35,7 +35,9 @@ fl <- list()
 #using here means that I can easily read files in a subdirectory
 for (kk in 1:length(fils)){
   entry <- read.csv(here("2025",fils[kk]))
-  
+  # accounting for the ginko/rhizo team
+  # entry <- stringr::srt_replace_all(entry, "Ginko", "GinkoRhizo")
+  # entry <- stringr::srt_replace_all(entry, "Mycorrhizal Fungus", "GinkoRhizo")
   fl[[kk]] <- as.vector(entry[,1])
 }
 

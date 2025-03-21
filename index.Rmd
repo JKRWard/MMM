@@ -36,8 +36,15 @@ fl <- list()
 for (kk in 1:length(fils)){
   entry <- read.csv(here("2025",fils[kk]))
   # accounting for the ginko/rhizo team
-  # entry <- stringr::srt_replace_all(entry, "Ginko", "GinkoRhizo")
-  # entry <- stringr::srt_replace_all(entry, "Mycorrhizal Fungus", "GinkoRhizo")
+  if(nrow(entry %>% filter(.[,1] == "Ginkgo")) > 0){
+  entry <- stringr::str_replace_all(entry[,1], "Ginkgo", "GinkgoRhizo")
+  entry <- as.data.frame(entry)
+  } 
+  
+  if(nrow(entry %>% filter(.[,1] == "Mycorrhizal Fungus")) > 0){
+  entry <- stringr::str_replace_all(entry[,1], "Mycorrhizal Fungus", "GinkgoRhizo")
+  entry <- as.data.frame(entry)
+  }
   fl[[kk]] <- as.vector(entry[,1])
 }
 

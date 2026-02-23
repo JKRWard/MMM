@@ -70,10 +70,10 @@ ui <- fluidPage(
         (ranking are the numbers displayed next to the animals), and ecology can play a huge role in what happens. Once to the Elite Trait, the battle location is random among 4 
         ecologies for the remaining battles. The location is announced right before the battle.", style = "font-size:16px"),
                                   p("This years four random habitats are:", style = "font-size:16px"),
-                                  p("        - Sea Cave", style = "font-size:16px"),
-                                  p("        - Geothermal Wetlands", style = "font-size:16px"),
-                                  p("        - Sky Islands", style = "font-size:16px"),
-                                  p("        - Temperate Broadleaf Forest", style = "font-size:16px"),
+                                  p("        - Ocean Reef", style = "font-size:16px"),
+                                  p("        - Swamp", style = "font-size:16px"),
+                                  p("        - Desert", style = "font-size:16px"),
+                                  p("        - Eucalypt Forest", style = "font-size:16px"),
                                   br(),
                                   p("Participants fill out their brackets with their choices for the winners for each bout. Scoring occurs at the end of the tournament, points allocated as follows:", 
                                     style = "font-size:16px"),
@@ -89,7 +89,7 @@ ui <- fluidPage(
                                            p("Champion = 13 points", style = "font-size:16px"),
                                     ),
                                     column(3,
-                                           img(src="MMM Bracket 2025.PNG", width = 1050, height = 800, style="vertical-align:middle"),
+                                           img(src="MMM Bracket 2026.PNG", width = 1050, height = 800, style="vertical-align:middle"),
                                     )
                                   ),
                                   
@@ -101,15 +101,15 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("W1_0_1", h4("Wildcard"), choices=c("", "Northern Flying Squirrel(14)", "Flying Frog(14)"))
+                                           selectInput("W1_0_1", h4("Wildcard"), choices=c("", "Bone Collector Caterpillar (16)", "Assassin Bug (16)"))
                                     )
                                   ),
                                   
                                   fluidRow(
-                                    h1("Same & Different"),
+                                    h1("Library Legends"),
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q1_1_1", h4("Round 1"), choices=c("", "Thorold's Deer(1)", "Olympic Marmot(16)"))
+                                           selectInput("Q1_1_1", h4("Round 1"), choices=c("", "Nile Crocodile (1)", "Papyrus (16)"))
                                     ),
                                     column(2,
                                            uiOutput("Q1_1_2")
@@ -128,7 +128,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q1_2_1", h4(""),  choices=c("", "Gelada(8)", "Eastern Grey Kangaroo(9)"))
+                                           selectInput("Q1_2_1", h4(""),  choices=c("", "European Rabbit (8)", "Mouse (9)"))
                                     )
                                     
                                   ),
@@ -136,7 +136,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q1_3_1", h4(""),  choices=c("", "Paca(5)", "Greater Mouse Deer(12)"))
+                                           selectInput("Q1_3_1", h4(""),  choices=c("", "Grey Fox (5)", "Book Scorpion (12)"))
                                     ),
                                     column(2,
                                            uiOutput("Q1_3_2")
@@ -146,14 +146,14 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q1_4_1", h4(""),  choices=c("", "Coati(4)", "Fig-eating Bat(13)"))
+                                           selectInput("Q1_4_1", h4(""),  choices=c("", "Eurasian Eagle Owl (4)", "Silver Fish (13)"))
                                     )
                                   ),
                                   
                                   fluidRow(
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q1_5_1", h4(""),  choices=c("", "Aardvark(7)", "Bandicoot(10)"))
+                                           selectInput("Q1_5_1", h4(""),  choices=c("", "Domestic Cat (6)", "Common Pipistrelle Bat (11)"))
                                     ),
                                     column(2,
                                            uiOutput("Q1_5_2")
@@ -166,7 +166,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q1_6_1", h4(""),  choices=c("", "Sun Bear(2)", "Hedgehog(15)"))
+                                           selectInput("Q1_6_1", h4(""),  choices=c("", "Domestic Dog (3)", "Book Loue (14)"))
                                     )
                                     
                                   ),
@@ -174,7 +174,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q1_7_1", h4(""),  choices=c("", "Greater Glider(6)", "Paradise Flying Snake(11)"))
+                                           selectInput("Q1_7_1", h4(""),  choices=c("", "White Stork (7)", "Mesopotamian Himir (10)"))
                                     ),
                                     column(2,
                                            uiOutput("Q1_7_2")
@@ -184,7 +184,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           uiOutput("Q1_8_1")
+                                           selectInput("Q1_8_1", h4(""), choices=c("", "Lions (2)", "Mold (15)"))
                                     )
                                   ),
                                   
@@ -192,10 +192,10 @@ ui <- fluidPage(
                                   #End Quarter 1
                                   
                                   fluidRow(
-                                    h1("The Only Ones"),
+                                    h1("Thats so Metal"),
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q2_1_1", h4("Round 1"),  choices=c("", "Addax(1)", "Grant's Golden Mole(16)"))
+                                           uiOutput("Q2_1_1")
                                     ),
                                     column(2,
                                            uiOutput("Q2_1_2")
@@ -211,7 +211,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q2_2_1", h4(""),  choices=c("", "Spotted-neck Otter(8)", "Tayra(9)"))
+                                           selectInput("Q2_2_1", h4(""),  choices=c("", "Least Shrew (8)", "Long-tailed Planigale (9)"))
                                     )
                                     
                                   ),
@@ -219,7 +219,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q2_3_1", h4(""),  choices=c("", "Maned Wolf(5)", "Common Muskrat(12)"))
+                                           selectInput("Q2_3_1", h4(""),  choices=c("", "Common Chuckwalla (5)", "Fringed-lipped Bat (12)"))
                                     ),
                                     column(2,
                                            uiOutput("Q2_3_2")
@@ -229,14 +229,14 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q2_4_1", h4(""),  choices=c("", "Chacoan Peccary(4)", "Mountain Beaver(13)"))
+                                           selectInput("Q2_4_1", h4(""),  choices=c("", "Pacific Lamprey (4)", "Boneworm (13)"))
                                     )
                                   ),
                                   
                                   fluidRow(
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q2_5_1", h4(""),  choices=c("", "Marsh Mongoose(7)", "Quokka(10)"))
+                                           selectInput("Q2_5_1", h4(""),  choices=c("", "Southern Grasshopper Mouse (7)", "Uropygi (10)"))
                                     ),
                                     column(2,
                                            uiOutput("Q2_5_2")
@@ -249,7 +249,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q2_6_1", h4(""),  choices=c("", "Puma(2)", "Star-nosed Mole(15)"))
+                                           selectInput("Q2_6_1", h4(""),  choices=c("", "Gila Monster (3)", "Siberian Salamander (14)"))
                                     )
                                     
                                   ),
@@ -257,7 +257,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q2_7_1", h4(""),  choices=c("", "Indri(6)", "Hispid Hare(11)"))
+                                           selectInput("Q2_7_1", h4(""),  choices=c("", "Bloodworm (7)", "Shrike (10)"))
                                     ),
                                     column(2,
                                            uiOutput("Q2_7_2")
@@ -267,7 +267,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q2_8_1", h4(""), choices=c("", "Saiga(3)", "Woolly Giant Rat(14)"))
+                                           selectInput("Q2_8_1", h4(""), choices=c("", "Ossifrage (2)", "Cicada Killer Wasp (15)"))
                                     )
                                   ),
                                   
@@ -283,10 +283,10 @@ ui <- fluidPage(
                                   # ),
                                   
                                   fluidRow(
-                                    h1("Tuxedo Style"),
+                                    h1("Money Mammals"),
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q3_1_1", h4("Round1"),  choices=c("", "Polar Bear(1)", "Eurasian Water Shrew(16)"))
+                                           selectInput("Q3_1_1", h4("Round1"),  choices=c("", "Humpback Whale (1)", "Red Squirrel (16)"))
                                     ),
                                     column(2,
                                            uiOutput("Q3_1_2")
@@ -305,7 +305,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q3_2_1", h4(""),  choices=c("", "Tasmania Devil(8)", "Delacour's Langur(9)"))
+                                           selectInput("Q3_2_1", h4(""),  choices=c("", "Spectacled Bear (8)", "Eastern Gorilla (9)"))
                                     )
                                     
                                   ),
@@ -313,7 +313,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q3_3_1", h4(""),  choices=c("", "Malayn Tapir(5)", "Luzon Giant Cloud Rat(12)"))
+                                           selectInput("Q3_3_1", h4(""),  choices=c("", "Giraffe (5)", "Giant Anteater (12)"))
                                     ),
                                     column(2,
                                            uiOutput("Q3_3_2")
@@ -323,14 +323,14 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q3_4_1", h4(""),  choices=c("", "Cape Buffalo(4)", "Moonrat(13)"))
+                                           selectInput("Q3_4_1", h4(""),  choices=c("", "Indian Rhinoceros (4)", "Chital (13)"))
                                     )
                                   ),
                                   
                                   fluidRow(
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q3_5_1", h4(""),  choices=c("", "Ribbon Seal(7)", "Southern Tamandua(10)"))
+                                           selectInput("Q3_5_1", h4(""),  choices=c("", "Roan Antelope (6)", "Bornean Orangutan (11)"))
                                     ),
                                     column(2,
                                            uiOutput("Q3_5_2")
@@ -343,7 +343,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q3_6_1", h4(""),  choices=c("", "Narwhal(2)", "Eastern Spotted Skunk(15)"))
+                                           selectInput("Q3_6_1", h4(""),  choices=c("", "Hippopotamus (3)", "Brown-throated Sloth (14)"))
                                     )
                                     
                                   ),
@@ -351,7 +351,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q3_7_1", h4(""),  choices=c("", "Mountain Zebra(6)", "White-faced Capuchin(11)"))
+                                           selectInput("Q3_7_1", h4(""),  choices=c("", "Arabian Oryx (7)", "Eurasian Lynx (10)"))
                                     ),
                                     column(2,
                                            uiOutput("Q3_7_2")
@@ -361,7 +361,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q3_8_1", h4(""),  choices=c("", "Wild Yak(3)", "Zorilla(14)"))
+                                           selectInput("Q3_8_1", h4(""),  choices=c("", "Asian Elephant (2)", "Beech Marten (15)"))
                                     )
                                   ),
                                   
@@ -369,10 +369,10 @@ ui <- fluidPage(
                                   #End Quarter 3
                                   
                                   fluidRow(
-                                    h1("Roots & Relics"),
+                                    h1("Extinction is Forever"),
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q4_1_1", h4("Round 1"),  choices=c("", "Ginkgo(1)", "Mycorrhizal Fungus(16)"))
+                                           selectInput("Q4_1_1", h4("Round 1"),  choices=c("", "Stellers Sea Cow (1)", "St. Kilda House Mouse (16)"))
                                     ),
                                     column(2,
                                            uiOutput("Q4_1_2")
@@ -388,7 +388,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q4_2_1", h4(""),  choices=c("", "Asain Forest Tortoise(8)", "Platypus(9)"))
+                                           selectInput("Q4_2_1", h4(""),  choices=c("", "Saudi Gazella (8)", "Japanese Otter (9)"))
                                     )
                                     
                                   ),
@@ -396,7 +396,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q4_3_1", h4(""),  choices=c("", "Saimaa Ringed Seal(5)", "Olm(12)"))
+                                           selectInput("Q4_3_1", h4(""),  choices=c("", "Baiji (5)", "Martinique Gaint RIce Rat (12)"))
                                     ),
                                     column(2,
                                            uiOutput("Q4_3_2")
@@ -406,14 +406,14 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q4_4_1", h4(""),  choices=c("", "Ceolacanth(4)", "Mudskipper(13)"))
+                                           selectInput("Q4_4_1", h4(""),  choices=c("", "Caribbean Monk Seal (4)", "Yallara (13)"))
                                     )
                                   ),
                                   
                                   fluidRow(
                                     column(1,),
                                     column(2, 
-                                           selectInput("Q4_5_1", h4(""),  choices=c("", "Pelican(7)", "Horseshoe Crab(10)"))
+                                           selectInput("Q4_5_1", h4(""),  choices=c("", "Thylacine (6)", "Little Swan Island Hutia (11)"))
                                     ),
                                     column(2,
                                            uiOutput("Q4_5_2")
@@ -426,7 +426,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q4_6_1", h4(""),  choices=c("", "Alligator Gar(2)", "Cyanobacteria(15)"))
+                                           selectInput("Q4_6_1", h4(""),  choices=c("", "Aurochs (3)", "Bramble Cay Melomys (14)"))
                                     )
                                     
                                   ),
@@ -434,7 +434,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q4_7_1", h4(""),  choices=c("", "Starry Sturgeon(6)", "Tuatara(11)"))
+                                           selectInput("Q4_7_1", h4(""),  choices=c("", "Falkland Isnalnds Wolf (7)", "Sea Mink (10)"))
                                     ),
                                     column(2,
                                            uiOutput("Q4_7_2")
@@ -444,7 +444,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q4_8_1", h4(""),  choices=c("", "Frilled Shark(3)", "Fern(14)"))
+                                           selectInput("Q4_8_1", h4(""),  choices=c("", "EIld Dromedary Camel (2)", "NZ Greater Short-tailed Bat (15)"))
                                     )
                                   ),
                                   
@@ -495,202 +495,202 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Thorold%27s_deer", "Thorold's Deer(1)", target = "_blank"), 
-                                           img(src="Thorold's Deer(1).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Nile_crocodile", "Nile Crocodile (1)", target = "_blank"), 
+                                           img(src="Nile Crocodile (1).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Polar_bear", "Polar Bear(1)", target = "_blank"),
-                                           img(src="Polar Bear(1).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Olympic_marmot", "Olympic Marmot(16)", target = "_blank"), 
-                                           img(src="Olympic Marmot(16).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Eurasian_water_shrew", 
-                                                  "Eurasian Water Shrew(16)"),
-                                           img(src="Eurasian Water Shrew(16).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Humpback_whale", "Humpback Whale (1)", target = "_blank"),
+                                           img(src="Humpback Whale (1).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Gelada", "Gelada(8)", target = "_blank"),
-                                           img(src="Gelada(8).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Cyperus_papyrus", "Papyrus (16)", target = "_blank"), 
+                                           img(src="Papyrus (16).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Tasmanian_devil", "Tasmanian Devil(8)", target = "_blank"),
-                                           img(src="Tasmanian Devil(8).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Eastern_grey_kangaroo", "Eastern Grey Kangaroo(9)", target = "_blank"),
-                                           img(src="Eastern Grey Kangaroo(9).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Delacour%27s_langur", "Delacour's Langur(9)", target = "_blank"),
-                                           img(src="Delacour's Langur(9).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Red_squirrel", 
+                                                  "Red Squirrel (16)"),
+                                           img(src="Red Squirrel (16).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Lowland_paca", "Paca(5)", target = "_blank"),
-                                           img(src="Paca(5).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/European_rabbit", "European Rabbit (8)", target = "_blank"),
+                                           img(src="European Rabbit (8).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Malayan_tapir", "Malayan Tapir(5)", target = "_blank"),
-                                           img(src="Malayan Tapir(5).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Greater_mouse_deer", "Greater Mouse Deer(12)", target = "_blank"),
-                                           img(src="Greater Mouse Deer(12).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Northern_Luzon_giant_cloud_rat", "Luzon Giant Cloud Rat(12)", target = "_blank"),
-                                           img(src="Luzon Giant Cloud Rat(12).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Spectacled_bear", "Spectacled Bear (8)", target = "_blank"),
+                                           img(src="Spectacled Bear (8).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/White-nosed_coati", "Coati(4)", target = "_blank"),
-                                           img(src="Coati(4).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/House_mouse", "Mouse (9)", target = "_blank"),
+                                           img(src="Mouse (9).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/African_buffalo", "Cape Buffalo(4)", target = "_blank"),
-                                           img(src="Cape Buffalo(4).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Cuban_fig-eating_bat", "Fig-eating Bat(13)", target = "_blank"),
-                                           img(src="Fig-eating Bat(13).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Moonrat", "Moonrat(13)", target = "_blank"),
-                                           img(src="Moonrat(13).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Eastern_gorilla", "Eastern Gorilla (9)", target = "_blank"),
+                                           img(src="Eastern Gorilla (9).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Aardvark", "Aardvark(7)", target = "_blank"),
-                                           img(src="Aardvark(7).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Gray_fox", "Grey Fox (5)", target = "_blank"),
+                                           img(src="Grey Fox (5).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Ribbon_seal", "Ribbon Seal(7)", target = "_blank"),
-                                           img(src="Ribbon Seal(7).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Southern_brown_bandicoot", "Bandicoot(10)", target = "_blank"),
-                                           img(src="Bandicoot(10).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Southern_tamandua", "Southern Tamandua(10)", target = "_blank"),
-                                           img(src="Southern Tamandua(10).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Giraffe", "Giraffe (5)", target = "_blank"),
+                                           img(src="Giraffe (5).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Sun_bear", "Sun Bear(2)", target = "_blank"),
-                                           img(src="Sun Bear(2).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Chelifer_cancroides", "Book Scorpion (12)", target = "_blank"),
+                                           img(src="Book Scorpion (12).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Narwhal", "Narwhal(2)", target = "_blank"),
-                                           img(src="Narwhal(2).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Four-toed_hedgehog", "Hedgehog(15)", target = "_blank"),
-                                           img(src="Hedgehog(15).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Eastern_spotted_skunk", 
-                                                  "Eastern Spotted Skunk(15)", target = "_blank"),
-                                           img(src="Eastern Spotted Skunk(15).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Giant_anteater", "Giant Anteater (12)", target = "_blank"),
+                                           img(src="Giant Anteater (12).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Greater_glider", "Greater Glider(6)", target = "_blank"),
-                                           img(src="Greater Glider(6).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Eurasian_eagle-owl", "Eurasian Eagle Owl (4)", target = "_blank"),
+                                           img(src="Eurasian Eagle Owl (4).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Mountain_zebra", "Mountain Zebra(6)", target = "_blank"),
-                                           img(src="Mountain Zebra(6).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Paradise_flying_snake", "Paradise Flying Snake(11)", target = "_blank"),
-                                           img(src="Paradise Flying Snake(11).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Colombian_white-faced_capuchin", "White-faced Capuchin(11)", target = "_blank"),
-                                           img(src="White-faced Capuchin(11).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Indian_rhinoceros", "Indian Rhinoceros (4)", target = "_blank"),
+                                           img(src="Indian Rhinoceros (4).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Sunda_colugo", "Sunda Colugo(3)", target = "_blank"),
-                                           img(src="Sunda Colugo(3).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Silverfish", "Silverfish (13)", target = "_blank"),
+                                           img(src="Silverfish (13).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Wild_yak", "Wild Yak(3)", target = "_blank"),
-                                           img(src="Wild Yak(3).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Northern_flying_squirrel", "Northern Flying Squirrel(14)", target = "_blank"),
-                                           img(src="Northern Flying Squirrel(14).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Striped_polecat", "Zorilla(14)", target = "_blank"),
-                                           img(src="Zorilla(14).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Chital", "Chital (13)", target = "_blank"),
+                                           img(src="Chital (13).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Wallace%27s_flying_frog", "Flying Frog(14)", target = "_blank"),
-                                           img(src="Flying Frog(14).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Cat", "Domestic Cat (6)", target = "_blank"),
+                                           img(src="Domestic Cat (6).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Roan_antelope", "Roan Antelope (6)", target = "_blank"),
+                                           img(src="Roan Antelope (6).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Common_pipistrelle", "Common Pipistrelle Bat (11)", target = "_blank"),
+                                           img(src="Common Pipistrelle Bat (11).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Bornean_orangutan", "Bornean Orangutan (11)", target = "_blank"),
+                                           img(src="Bornean Orangutan (11).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Dog", "Domestic Dog (3)", target = "_blank"),
+                                           img(src="Domestic Dog (3).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Hippopotamus", "Hippotamus (3)", target = "_blank"),
+                                           img(src="Hippotamus (3).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Liposcelis_bostrychophila", "Book Louse (14)", target = "_blank"),
+                                           img(src="Book Louse (14).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Brown-throated_sloth", 
+                                                  "Brown-throated Sloth (14)", target = "_blank"),
+                                           img(src="Brown-throated Sloth (14).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/White_stork", "White Stork (7)", target = "_blank"),
+                                           img(src="White Stork (7).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Arabian_oryx", "Arabian Oryx (7)", target = "_blank"),
+                                           img(src="Arabian Oryx (7).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Mesopotamian_himri", "Mesopotamian Himri (10)", target = "_blank"),
+                                           img(src="Mesopotamian Himri (10).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Eurasian_lynx", "Eurasian Lynx (10)", target = "_blank"),
+                                           img(src="Eurasian Lynx (10).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Lion", "Lions (2)", target = "_blank"),
+                                           img(src="Lions (2).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Asian_elephant", "Asian Elephant (2)", target = "_blank"),
+                                           img(src="Asian Elephant (2).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Aspergillus", "Mold (15)", target = "_blank"),
+                                           img(src="Mold (15).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Beech_marten", "Beech Marten (15)", target = "_blank"),
+                                           img(src="Beech Marten (15).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Hyposmocoma", "Bone Collector Caterpillar (16)", target = "_blank"),
+                                           img(src="Bone Collector Caterpillar (16).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
                                            
@@ -700,193 +700,193 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Addax", "Addax(1)", target = "_blank"),
-                                           img(src="Addax(1).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Honey_badger", "Honey Badger (1)", target = "_blank"),
+                                           img(src="Honey Badger (1).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Ginkgo_biloba", "Ginkgo(1)", target = "_blank"),
-                                           img(src="Ginkgo(1).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Grant%27s_golden_mole", "Grant's Golden Mole(16)", target = "_blank"),
-                                           img(src="Grant's Golden Mole(16).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Rhizophagus_(fungus)", 
-                                                  "Mycorrhizal Fungus(16)", target = "_blank"),
-                                           img(src="Mycorrhizal Fungus(16).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Steller%27s_sea_cow", "Stellers Sea Cow (1)", target = "_blank"),
+                                           img(src="Stellers Sea Cow (1).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Spotted-necked_otter", "Spotted-necked Otter(8)", target = "_blank"),
-                                           img(src="Spotted-necked Otter(8).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Acanthaspis_petax", "Assassin Bug (16)", target = "_blank"),
+                                           img(src="Assassin Bug (16).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Asian_forest_tortoise", "Asain Forest Tortoise(8)", target = "_blank"),
-                                           img(src="Asain Forest Tortoise(8).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Tayra", "Tayra(9)", target = "_blank"),
-                                           img(src="Tayra(9).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Platypus", "Platypus(9)", target = "_blank"),
-                                           img(src="Platypus(9).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/St_Kilda_house_mouse", 
+                                                  "St. Kilda House Mouse (16)", target = "_blank"),
+                                           img(src="St. Kilda House Mouse (16).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Maned_wolf", "Maned Wolf(5)", target = "_blank"),
-                                           img(src="Maned Wolf(5).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/North_American_least_shrew", "Least Shrew (8)", target = "_blank"),
+                                           img(src="Least Shrew (8).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Saimaa_ringed_seal", 
-                                                  "Saimma Ringed Seal(5)", target = "_blank"),
-                                           img(src="Saimma Ringed Seal(5).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Common_muskrat", "Common Muskrat(12)", target = "_blank"),
-                                           img(src="Common Muskrat(12).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Olm", "Olm(12)", target = "_blank"),
-                                           img(src="Olm(12).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Saudi_gazelle", "Saudi Gazelle (8)", target = "_blank"),
+                                           img(src="Saudi Gazelle (8).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Chacoan_peccary", "Chacoan Peccary(4)", target = "_blank"),
-                                           img(src="Chacoan Peccary(4).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Long-tailed_planigale", "Long-tailed Planigale (9)", target = "_blank"),
+                                           img(src="Long-tailed Planigale (9).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/West_Indian_Ocean_coelacanth", "Coelacanth(4)", target = "_blank"),
-                                           img(src="Coelacanth(4).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Mountain_beaver", "Mountain Beaver(13)", target = "_blank"),
-                                           img(src="Mountain Beaver(13).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Giant_mudskipper", "Mudskipper(13)", target = "_blank"),
-                                           img(src="Mudskipper(13).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Marsh_mongoose", "Marsh Mongoose(7)", target = "_blank"),
-                                           img(src="Marsh Mongoose(7).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Great_white_pelican", "Pelican(7)", target = "_blank"),
-                                           img(src="Pelican(7).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Japanese_otter", "Japanese Otter (9)", target = "_blank"),
+                                           img(src="Japanese Otter (9).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Quokka", "Quokka(10)", target = "_blank"),
-                                           img(src="Quokka(10).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Sauromalus_ater", "Common Chuckwalla (5)", target = "_blank"),
+                                           img(src="Common Chuckwalla (5).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Atlantic_horseshoe_crab", "Horseshoe Crab(10)", target = "_blank"),
-                                           img(src="Horseshoe Crab(10).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Cougar", "Puma(2)", target = "_blank"),
-                                           img(src="Puma(2).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Alligator_gar", "Alligator Gar(2)", target = "_blank"),
-                                           img(src="Alligator Gar(2).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Baiji", 
+                                                  "Baiji (5)", target = "_blank"),
+                                           img(src="Baiji (5).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Star-nosed_mole", "Star-nosed Mole(15)", target = "_blank"),
-                                           img(src="Star-nosed Mole(15).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Fringe-lipped_bat", "Fringe-lipped Bat (12)", target = "_blank"),
+                                           img(src="Fringe-lipped Bat (12).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Prochlorococcus", "Cyanobacteria(15)", target = "_blank"),
-                                           img(src="Cyanobacteria(15).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Indri", "Indri(6)", target = "_blank"),
-                                           img(src="Indri(6).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Starry_sturgeon", "Starry Sturgeon(6)", target = "_blank"),
-                                           img(src="Starry Sturgeon(6).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Megalomys_desmarestii", "Martinique Giant Rice Rat (12)", target = "_blank"),
+                                           img(src="Martinique Giant Rice Rat (12).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Hispid_hare", "Hispid Hare(11)", target = "_blank"),
-                                           img(src="Hispid Hare(11).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Pacific_lamprey", "Pacific Lamprey (4)", target = "_blank"),
+                                           img(src="Pacific Lamprey (4).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Tuatara", "Tuatara(11)", target = "_blank"),
-                                           img(src="Tuatara(11).jpg", width = 150, height = 200),
-                                    ),
-                                  ),
-                                  br(),
-                                  fluidRow(
-                                    column(1,),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Saiga", "Saiga(3)", target = "_blank"),
-                                           img(src="Saiga(3).jpg", width = 150, height = 200),
-                                    ),
-                                    column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Frilled_shark", "Frilled Shark(3)", target = "_blank"),
-                                           img(src="Frilled Shark(3).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Caribbean_monk_seal", "Carribean Monk Seal (4)", target = "_blank"),
+                                           img(src="Carribean Monk Seal (4).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   br(),
                                   fluidRow(
                                     column(1,),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Woolly_giant_rat", "Woolly Giant Rat(14)", target = "_blank"),
-                                           img(src="Woolly Giant Rat(14).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Osedax", "Boneworm (13)", target = "_blank"),
+                                           img(src="Boneworm (13).jpg", width = 150, height = 200),
                                     ),
                                     column(4,
-                                           tags$a(href="https://en.wikipedia.org/wiki/Claytosmunda", "Fern(14)", target = "_blank"),
-                                           img(src="Fern(14).jpg", width = 150, height = 200),
+                                           tags$a(href="https://en.wikipedia.org/wiki/Lesser_bilby", "Yallara (13)", target = "_blank"),
+                                           img(src="Yallara (13).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Southern_grasshopper_mouse", "Southern Grasshopper Mouse (6)", target = "_blank"),
+                                           img(src="Southern Grasshopper Mouse (6).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Thylacine", "Thylacine (6)", target = "_blank"),
+                                           img(src="Thylacine (6).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Uropygi", "Uropygi (11)", target = "_blank"),
+                                           img(src="Uropygi (11).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Little_Swan_Island_hutia", "Little Swan Island Hutia (11)", target = "_blank"),
+                                           img(src="Little Swan Island Hutia (11).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Gila_monster", "Gila Monster (3)", target = "_blank"),
+                                           img(src="Gila Monster (3).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Aurochs", "Aurochs (3)", target = "_blank"),
+                                           img(src="Aurochs (3).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Salamandrella_keyserlingii", "Siberian Salamander (14)", target = "_blank"),
+                                           img(src="Siberian Salamander (14).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Bramble_Cay_melomys", "Bramble Cay Meloymys (14)", target = "_blank"),
+                                           img(src="Bramble Cay Meloymys (14).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Glycera_dibranchiata", "Bloodworm (7)", target = "_blank"),
+                                           img(src="Bloodworm (7).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Falkland_Islands_wolf", "Falkland Islands Wolf (7)", target = "_blank"),
+                                           img(src="Falkland Islands Wolf (7).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Great_grey_shrike", "Shirke (10)", target = "_blank"),
+                                           img(src="Shrike (10).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Sea_mink", "Sea Mink (10)", target = "_blank"),
+                                           img(src="Sea Mink (10).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Bearded_vulture", "Ossifrage (2)", target = "_blank"),
+                                           img(src="Ossifrage (2).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Dromedary", "Wild Dromedary Camel (2)", target = "_blank"),
+                                           img(src="Wild Dromedary Camel (2).jpg", width = 150, height = 200),
+                                    ),
+                                  ),
+                                  br(),
+                                  fluidRow(
+                                    column(1,),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/Sphecius_speciosus", "Cicada Killer Wasp (15)", target = "_blank"),
+                                           img(src="Cicada Killer Wasp (15).jpg", width = 150, height = 200),
+                                    ),
+                                    column(4,
+                                           tags$a(href="https://en.wikipedia.org/wiki/New_Zealand_greater_short-tailed_bat", "NZ Greater Short-tailed Bat (15)", target = "_blank"),
+                                           img(src="NZ Greater Short-tailed Bat (15).jpg", width = 150, height = 200),
                                     ),
                                   ),
                                   
@@ -929,8 +929,8 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
   #Wildcard
-  output$Q1_8_1 <- renderUI(
-    selectInput("Q1_8_1", h4(""),  choices=c("", "Sunda Colugo(3)", input$W1_0_1))
+  output$Q2_1_1 <- renderUI(
+    selectInput("Q2_1_1", h4("Round 1"),  choices=c("", "Honey Badger (1)", input$W1_0_1))
   )
   #Q1
   output$Q1_1_2 <- renderUI(

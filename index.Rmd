@@ -34,7 +34,8 @@ fl <- list()
 #loop through files and add to the list
 #using here means that I can easily read files in a subdirectory
 for (kk in 1:length(fils)){
-  entry <- read.csv(here("2026",fils[kk]))
+  entry <- read.csv(here("2026",fils[kk])) %>% 
+    mutate(across(1, ~ str_trim(.x, side = "right")))
   fl[[kk]] <- as.vector(entry[,1])
 }
 

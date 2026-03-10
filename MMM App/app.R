@@ -2,7 +2,7 @@ library(tidyverse)
 
 ui <- fluidPage(
   
-  titlePanel("March Mammal Madness 2025"),
+  titlePanel("March Mammal Madness 2026"),
   
   #Main panel with tables for background, wildcard, H1, H2, championship + preview + download (wildcard position varies depending on the bracket)
   mainPanel( width = 12,
@@ -174,7 +174,7 @@ ui <- fluidPage(
                                   fluidRow(
                                     column(1,),
                                     column(2,
-                                           selectInput("Q1_7_1", h4(""),  choices=c("", "White Stork (7)", "Mesopotamian Himir (10)"))
+                                           selectInput("Q1_7_1", h4(""),  choices=c("", "White Stork (7)", "Mesopotamian Himri (10)"))
                                     ),
                                     column(2,
                                            uiOutput("Q1_7_2")
